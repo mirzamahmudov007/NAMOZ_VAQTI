@@ -62,12 +62,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/net.alhazmy13.PrayerTimes/library -->
-		<dependency>
-			<groupId>net.alhazmy13.PrayerTimes</groupId>
-			<artifactId>library</artifactId>
-			<version>1.0.1-beta</version>
-		</dependency>
 
 		<dependency>
 			<groupId>com.batoulapps.adhan</groupId>
