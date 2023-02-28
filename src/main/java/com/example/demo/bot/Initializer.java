@@ -18,6 +18,7 @@ public class Initializer {
 
     @EventListener({ContextRefreshedEvent.class})
     public void init() {
+
         try {
             TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
             telegramBotsApi.registerBot((LongPollingBot) bot);
