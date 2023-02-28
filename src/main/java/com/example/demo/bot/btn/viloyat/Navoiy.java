@@ -91,8 +91,8 @@ public class Navoiy {
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         InlineKeyboardButton inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText(" ");
-        inlineKeyboardButton1.setCallbackData("Навоий шаҳри");
+        inlineKeyboardButton1.setText("Навоий шаҳри ");
+        inlineKeyboardButton1.setCallbackData("Navoiy shahri");
         List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         inlineKeyboardButton1 = new InlineKeyboardButton();

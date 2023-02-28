@@ -17,6 +17,7 @@ public class Andijon {
 
         InlineKeyboardButton inlineKeyboardButton1 = new InlineKeyboardButton();
         inlineKeyboardButton1.setText("Andijon shahri");
+        inlineKeyboardButton1.setPay(true);
         inlineKeyboardButton1.setCallbackData("Andijon shahri");
         List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
         keyboardButtonsRow1.add(inlineKeyboardButton1);
