@@ -1,10 +1,12 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import org.springframework.data.relational.core.sql.In;
+import org.telegram.telegrambots.meta.api.objects.Message;
 
 import javax.xml.stream.Location;
 import java.io.Serializable;
-
+import java.util.List;
 @Entity
 @Table(name = "telegram_users")
 public class User implements Serializable {
@@ -19,6 +21,9 @@ public class User implements Serializable {
 
     private String lastName;
 
+
+    private String oxirgiIsh;
+    private Message message;
     private Long chatId;
 
     private String userLang;
@@ -28,25 +33,52 @@ public class User implements Serializable {
 
     private String UserRegion;
 
+    private Integer bugungiNamozVatiMsgID;
+
     private String data;
 
-    private String lat;
+    private Double lat;
 
-    private String lang;
+    private Double lang;
 
-    public String getLat() {
+    public Double getLat() {
         return lat;
     }
 
-    public void setLat(String lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
 
-    public String getLang() {
+    public Double getLang() {
         return lang;
     }
 
-    public void setLang(String lang) {
+    public String getOxirgiIsh() {
+        return oxirgiIsh;
+    }
+
+    public void setOxirgiIsh(String oxirgiIsh) {
+        this.oxirgiIsh = oxirgiIsh;
+    }
+
+
+    public Message getMessage() {
+        return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
+    }
+
+    public Integer getBugungiNamozVatiMsgID() {
+        return bugungiNamozVatiMsgID;
+    }
+
+    public void setBugungiNamozVatiMsgID(Integer bugungiNamozVatiMsgID) {
+        this.bugungiNamozVatiMsgID = bugungiNamozVatiMsgID;
+    }
+
+    public void setLang(Double lang) {
         this.lang = lang;
     }
 

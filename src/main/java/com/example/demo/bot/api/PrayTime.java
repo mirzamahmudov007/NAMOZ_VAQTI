@@ -35,7 +35,7 @@ public class PrayTime {
 
     public String main(double latitude, double longitude, String text) {
 
-        Coordinates coordinates = new Coordinates(latitude, longitude);
+        Coordinates coordinates = new Coordinates((latitude), (longitude));
         DateComponents date = DateComponents.from(new Date());
         CalculationParameters params =
                 CalculationMethod.MUSLIM_WORLD_LEAGUE.getParameters();
@@ -56,16 +56,54 @@ public class PrayTime {
         System.out.println(asr);
         Date now = new Date();
         String time =
-                " \uD83D\uDDFA️ " + text + "\n " +
-                        "\uD83D\uDDD3️" + (now.getYear() + 1900) + "-yil " + now.getDate() + "-" + getMonth(now.getMonth()) + " \n \n" +
-                        " \uD83C\uDF04Tong: 0" + prayerTimes.fajr.getHours() + ":" + fajr + "\n " +
-                        "\uD83C\uDF24️Quyosh: 0" + prayerTimes.sunrise.getHours() + ":" + sunrise + "\n" +
-                        " ☀️Peshin: " + prayerTimes.dhuhr.getHours() + ":" + dhuhr + "\n" +
-                        "  ⛅️Asr: " + prayerTimes.asr.getHours() + ":" + asr + "\n" +
-                        "  \uD83C\uDF05Shom: " + prayerTimes.maghrib.getHours() + ":" + maghrib + "\n" +
-                        "  \uD83C\uDF19Xufton: " + prayerTimes.isha.getHours() + ":" + isha + "\n \n @orginal_namoz_bot";
+                " \uD83D\uDDFA ️ " + text + "\n " +
+                        "\uD83D\uDDD3️  " + (now.getYear() + 1900) + "-yil " + now.getDate() + "-" + getMonth(now.getMonth()) + " \n \n" +
+                        " \uD83C\uDF03  Tong: 0" + prayerTimes.fajr.getHours() + ":" + fajr + "\n\n " +
+                        "\uD83C\uDF04  ️Quyosh: 0" + prayerTimes.sunrise.getHours() + ":" + sunrise + "\n\n" +
+                        " \uD83C\uDF1E  Peshin: " + prayerTimes.dhuhr.getHours() + ":" + dhuhr + "\n\n" +
+                        " \uD83C\uDF07  Asr: " + prayerTimes.asr.getHours() + ":" + asr + "\n\n" +
+                        " \uD83C\uDF05  Shom: " + prayerTimes.maghrib.getHours() + ":" + maghrib + "\n\n" +
+                        " \uD83C\uDF0C  Xufton: " + prayerTimes.isha.getHours() + ":" + isha + "\n \n @orginal_namoz_bot";
         return time;
+
     }
+
+
+    public String mainLT(double latitude, double longitude, String text , String data) {
+
+        Coordinates coordinates = new Coordinates((latitude), (longitude));
+        DateComponents date = DateComponents.from(new Date());
+        CalculationParameters params =
+                CalculationMethod.MUSLIM_WORLD_LEAGUE.getParameters();
+        params.madhab = Madhab.HANAFI;
+        params.adjustments.fajr = 2;
+        PrayerTimes prayerTimes = new PrayerTimes(coordinates, date, params);
+
+        SunnahTimes sunnahTimes = new SunnahTimes(prayerTimes);
+        System.out.println(prayerTimes.asr);
+
+        String asr = String.valueOf(prayerTimes.asr.toString().substring(prayerTimes.asr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
+        String fajr = String.valueOf(prayerTimes.fajr.toString().substring(prayerTimes.fajr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
+        String sunrise = String.valueOf(prayerTimes.sunrise.toString().substring(prayerTimes.sunrise.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
+        String maghrib = String.valueOf(prayerTimes.maghrib.toString().substring(prayerTimes.maghrib.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
+        String isha = String.valueOf(prayerTimes.isha.toString().substring(prayerTimes.isha.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
+        String dhuhr = String.valueOf(prayerTimes.dhuhr.toString().substring(prayerTimes.dhuhr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
+
+        System.out.println(asr);
+        Date now = new Date();
+        String time =
+                " \uD83D\uDDFA ️ " + text + "\n " +
+                        "\uD83D\uDDD3️  " + (now.getYear() + 1900) + "-yil " + now.getDate() + "-" + getMonth(now.getMonth()) + " \n \n" +
+                        " \uD83C\uDF03 Tong: 0" + prayerTimes.fajr.getHours() + ":" + fajr + "\n \n" +
+                        "\uD83C\uDF04  ️Quyosh: 0" + prayerTimes.sunrise.getHours() + ":" + sunrise + "\n\n" +
+                        " \uD83C\uDF1E  Peshin: " + prayerTimes.dhuhr.getHours() + ":" + dhuhr + "\n\n" +
+                        " \uD83C\uDF07  Asr: " + prayerTimes.asr.getHours() + ":" + asr + "\n\n" +
+                        " \uD83C\uDF05  Shom: " + prayerTimes.maghrib.getHours() + ":" + maghrib + "\n\n" +
+                        " \uD83C\uDF0C  Xufton: " + prayerTimes.isha.getHours() + ":" + isha + "\n \n @orginal_namoz_bot";
+        return time;
+
+    }
+
 
     public String mainK(double latitude, double longitude, String text) {
 
@@ -92,12 +130,12 @@ public class PrayTime {
         String time =//🌤
                 "  \uD83D\uDDFA️ " + text + "\n " +
                         "\uD83D\uDDD3️" + (now.getYear() + 1900) + "-йил " + now.getDate() + "-" + getMonthK(now.getMonth()) + " \n \n" +
-                        " \uD83C\uDF04Тонг: 0" + prayerTimes.fajr.getHours() + ":" + fajr + "\n " +
-                        "⛅️Қуёш: 0" + prayerTimes.sunrise.getHours() + ":" + sunrise + "\n" +
-                        " ☀️️️Пешин: " + prayerTimes.dhuhr.getHours() + ":" + dhuhr + "\n" +
-                        "  \uD83C\uDF24Aср: " + prayerTimes.asr.getHours() + ":" + asr + "\n" +
-                        "  \uD83C\uDF05Шом: " + prayerTimes.maghrib.getHours() + ":" + maghrib + "\n" +
-                        "  \uD83C\uDF19Хуфтон: " + prayerTimes.isha.getHours() + ":" + isha + "\n \n @orginal_namoz_bot";
+                        " \uD83C\uDF03  Тонг: 0" + prayerTimes.fajr.getHours() + ":" + fajr + "\n\n      " +
+                        "\uD83C\uDF04  Қуёш: 0" + prayerTimes.sunrise.getHours() + ":" + sunrise + "\n\n" +
+                        " \uD83C\uDFDE️️  Пешин: " + prayerTimes.dhuhr.getHours() + ":" + dhuhr + "\n\n" +
+                        " \uD83C\uDF07  Aср: " + prayerTimes.asr.getHours() + ":" + asr + "\n\n" +
+                        " \uD83C\uDF05  Шом: " + prayerTimes.maghrib.getHours() + ":" + maghrib + "\n\n" +
+                        " \uD83C\uDF0C  Хуфтон: " + prayerTimes.isha.getHours() + ":" + isha + "\n \n @orginal_namoz_bot";
         return time;
     }
 

@@ -127,8 +127,8 @@ public class Samarqand {
         List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText(" ");
-        inlineKeyboardButton1.setCallbackData("Булунғур");
+        inlineKeyboardButton1.setText("Булунғур");
+        inlineKeyboardButton1.setCallbackData("Bulung'ur");
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         rowList.add(keyboardButtonsRow1);
 

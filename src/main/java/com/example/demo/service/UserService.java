@@ -55,39 +55,42 @@ public class UserService {
 
     public User update(User user, Long id, String step) {
         User user1 = new User();
-        user1.setId(user.getId());
-        user1.setChatId(user.getChatId());
-        user1.setLastName(user.getLastName());
-        user1.setUsername(user.getUsername());
-        user1.setFirstName(user.getFirstName());
-        user1.setUserRegion(user.getUserRegion());
+        user1 = user;
         user1.setStep(step);
-        user1.setData(user.getData());
         return userRepository.save(user1);
     }
 
     public User updateData(User user, Long id, String data) {
         User user1 = new User();
-        user1.setId(user.getId());
-        user1.setChatId(user.getChatId());
-        user1.setLastName(user.getLastName());
-        user1.setUsername(user.getUsername());
-        user1.setFirstName(user.getFirstName());
-        user1.setUserRegion(user.getUserRegion());
-        user1.setStep(user.getStep());
+        user1 = user;
         user1.setData(data);
         return userRepository.save(user1);
     }
 
-    public User updateLatLang(User user, Long id, String lat, String lang) {
+    public User updateOxirgiIsh(User user, Long id, String data) {
         User user1 = new User();
-        user1.setId(id);
-        user1.setChatId(user.getChatId());
-        user1.setLastName(user.getLastName());
-        user1.setUsername(user.getUsername());
-        user1.setFirstName(user.getFirstName());
-        user1.setStep(user.getStep());
-        user1.setData(user.getData());
+        user1 = user;
+        user1.setOxirgiIsh(data);
+        return userRepository.save(user1);
+    } public User bugungiNVMsgID(User user, Long id, Integer msgID) {
+        User user1 = new User();
+        user1 = user;
+        user1.setBugungiNamozVatiMsgID(msgID);
+        return userRepository.save(user1);
+    }
+
+    public User updateDeleteMessage(User user, Long id, Message message) {
+        User user1 = new User();
+        user1 = user;
+        message.setMessageId(message.getMessageId() + 1);
+        user1.setMessage(message);
+        return userRepository.save(user1);
+    }
+
+
+    public User updateLatLang(User user, Long id, double lat, double lang) {
+        User user1 = new User();
+        user1 = user;
         user1.setLat(lat);
         user1.setLang(lang);
         return userRepository.save(user1);
