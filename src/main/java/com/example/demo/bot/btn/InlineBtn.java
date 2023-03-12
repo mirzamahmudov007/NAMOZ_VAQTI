@@ -30,8 +30,11 @@ public class InlineBtn {
         inlineKeyboardMarkup.setKeyboard(rowList);
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());
-        sendMessage.setText("Aссалому Aлейкум Ботга Ҳуш келибсиз!\n" +
-                "Ўзингиз учун керакли ёзув турини аниқланг:");
+        sendMessage.setText("Assalomu Aleykum botga hush kelibsiz!\n" +
+                "O'zingiz uchun kerakli yozuv turini tanlang.\n" +
+                "---------------------------------------------------------------------\n" +
+                "Aссалому Aлейкум Ботга Ҳуш келибсиз!\n" +
+                "Ўзингиз учун керакли ёзув турини танланг.");
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         return sendMessage;
     } public SendMessage tilniOzgartirish(Long chatId) {

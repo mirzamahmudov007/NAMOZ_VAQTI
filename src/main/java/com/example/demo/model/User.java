@@ -21,6 +21,7 @@ public class User implements Serializable {
 
     private String lastName;
 
+    private Long members;
 
     private String oxirgiIsh;
     private Message message;
@@ -94,6 +95,13 @@ public class User implements Serializable {
         return id;
     }
 
+    public Long getMembers() {
+        return members;
+    }
+
+    public void setMembers(Long members) {
+        this.members = members;
+    }
 
     public void setId(Long id) {
         this.id = id;

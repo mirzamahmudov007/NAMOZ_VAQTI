@@ -11,10 +11,12 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 @Service
 public class UserService {
 
+    private final About_BotService botServicel;
     private final UserRepository userRepository;
     private final UserDto userDto;
 
-    public UserService(UserRepository userRepository, UserDto userDto) {
+    public UserService(About_BotService botServicel, UserRepository userRepository, UserDto userDto) {
+        this.botServicel = botServicel;
         this.userRepository = userRepository;
         this.userDto = userDto;
     }
@@ -38,7 +40,9 @@ public class UserService {
         user.setFirstName(message.getFrom().getFirstName());
         user.setStep(null);
         user.setUserLang(null);
-        return userRepository.save(user);
+        user =  userRepository.save(user);
+        botServicel.memebers(user.getId());
+        return user;
     }
 
     public Boolean existByChatId(Long chatId) {

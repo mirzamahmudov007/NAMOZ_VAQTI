@@ -86,7 +86,8 @@ public class RegionBtn {
         sendMessage.setChatId(chatId.toString());
         return sendMessage;
     }
-    public SendMessage buttongaVatBnJonatish(Long chatId,double lat  , double lang, String text ,String data) {
+
+    public SendMessage buttongaVatBnJonatish(Long chatId, double lat, double lang, String text, String data) {
         SendMessage sendMessage = new SendMessage();
         ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup();
         markup.setResizeKeyboard(true);
@@ -109,12 +110,13 @@ public class RegionBtn {
 
         markup.setKeyboard(rows);
         sendMessage.setReplyMarkup(markup);
-        sendMessage.setText(prayTime.mainLT(lat , lang ,text ,  data));
+        sendMessage.setText(prayTime.mainLT(lat, lang, text, data));
         sendMessage.setChatId(chatId.toString());
 //        sendMessage.setReplyMarkup(new ReplyKeyboardRemove());
         return sendMessage;
     }
-public SendMessage buttongaVatBnJonatishKrl(Long chatId,double lat  , double lang, String text ,String data) {
+
+    public SendMessage buttongaVatBnJonatishKrl(Long chatId, double lat, double lang, String text, String data) {
         SendMessage sendMessage = new SendMessage();
         ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup();
         markup.setResizeKeyboard(true);
@@ -137,14 +139,13 @@ public SendMessage buttongaVatBnJonatishKrl(Long chatId,double lat  , double lan
 
         markup.setKeyboard(rows);
         sendMessage.setReplyMarkup(markup);
-        sendMessage.setText(prayTime.mainLT(lat , lang ,text ,  data));
+        sendMessage.setText(prayTime.mainK(lat, lang, text, data));
         sendMessage.setChatId(chatId.toString());
         return sendMessage;
     }
 
 
-
-    public SendMessage MuvaffaqiyatliKrl(Long chatId  ,String data ) {
+    public SendMessage MuvaffaqiyatliKrl(Long chatId, String data) {
         SendMessage sendMessage = new SendMessage();
         ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup();
         markup.setResizeKeyboard(true);
@@ -167,12 +168,12 @@ public SendMessage buttongaVatBnJonatishKrl(Long chatId,double lat  , double lan
 
         markup.setKeyboard(rows);
         sendMessage.setReplyMarkup(markup);
-        sendMessage.setText("\uD83C\uDDFA\uD83C\uDDFF");
+        sendMessage.setText("✅");
         sendMessage.setChatId(chatId.toString());
         return sendMessage;
     }
 
-    public SendMessage MuvaffaqiyatliLt(Long chatId , String data) {
+    public SendMessage MuvaffaqiyatliLt(Long chatId, String data) {
         SendMessage sendMessage = new SendMessage();
         ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup();
         markup.setResizeKeyboard(true);
@@ -195,7 +196,7 @@ public SendMessage buttongaVatBnJonatishKrl(Long chatId,double lat  , double lan
 
         markup.setKeyboard(rows);
         sendMessage.setReplyMarkup(markup);
-        sendMessage.setText("\uD83C\uDDFA\uD83C\uDDFF");
+        sendMessage.setText("✅");
         sendMessage.setChatId(chatId.toString());
         return sendMessage;
     }
@@ -226,24 +227,7 @@ public SendMessage buttongaVatBnJonatishKrl(Long chatId,double lat  , double lan
         return sendMessage;
     }
 
-    public SendMessage kllLt(Long chatId) {
-        SendMessage sendMessage = new SendMessage();
-        ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup();
-        markup.setResizeKeyboard(true);
-        List<KeyboardRow> rows = new ArrayList<>();
-        KeyboardRow row = new KeyboardRow();
 
-        KeyboardButton button = new KeyboardButton();
-        button.setText("KRIL yozuviga o'tish \uD83D\uDD04");
-        row.add(button);
-        rows.add(row);
-
-        markup.setKeyboard(rows);
-        sendMessage.setReplyMarkup(markup);
-        sendMessage.setText("\uD83C\uDDFA\uD83C\uDDFF");
-        sendMessage.setChatId(chatId.toString());
-        return sendMessage;
-    }
     public SendMessage lTkll(Long chatId) {
         SendMessage sendMessage = new SendMessage();
         ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup();
@@ -258,7 +242,68 @@ public SendMessage buttongaVatBnJonatishKrl(Long chatId,double lat  , double lan
 
         markup.setKeyboard(rows);
         sendMessage.setReplyMarkup(markup);
-        sendMessage.setText("\uD83C\uDDFA\uD83C\uDDFF");
+        sendMessage.setText("✅");
+        sendMessage.setChatId(chatId.toString());
+        return sendMessage;
+    }
+
+
+    public SendMessage kllLt(Long chatId) {
+        SendMessage sendMessage = new SendMessage();
+        ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup();
+        markup.setResizeKeyboard(true);
+        List<KeyboardRow> rows = new ArrayList<>();
+        KeyboardRow row = new KeyboardRow();
+
+        KeyboardButton button = new KeyboardButton();
+        button.setText("KRIL yozuviga o'tish \uD83D\uDD04");
+        row.add(button);
+        rows.add(row);
+
+        markup.setKeyboard(rows);
+        sendMessage.setReplyMarkup(markup);
+        sendMessage.setText("✅");
+        sendMessage.setChatId(chatId.toString());
+        return sendMessage;
+    }
+
+
+    public SendMessage locationBTN(Long chatId) {
+        SendMessage sendMessage = new SendMessage();
+        ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup();
+        markup.setResizeKeyboard(true);
+        List<KeyboardRow> rows = new ArrayList<>();
+        KeyboardRow row = new KeyboardRow();
+
+        KeyboardButton button = new KeyboardButton();
+        button.setRequestLocation(true);
+        button.setText("\uD83D\uDCCD lakatsiyani jo'natish");
+        row.add(button);
+        rows.add(row);
+
+        markup.setKeyboard(rows);
+        sendMessage.setReplyMarkup(markup);
+        sendMessage.setText("Ботга жойлашувингизни (лакация) ташланг.");
+        sendMessage.setChatId(chatId.toString());
+        return sendMessage;
+    }
+
+    public SendMessage locationBTNK(Long chatId) {
+        SendMessage sendMessage = new SendMessage();
+        ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup();
+        markup.setResizeKeyboard(true);
+        List<KeyboardRow> rows = new ArrayList<>();
+        KeyboardRow row = new KeyboardRow();
+
+        KeyboardButton button = new KeyboardButton();
+        button.setRequestLocation(true);
+        button.setText("\uD83D\uDCCD лакацияни жўнатиш");
+        row.add(button);
+        rows.add(row);
+
+        markup.setKeyboard(rows);
+        sendMessage.setReplyMarkup(markup);
+        sendMessage.setText("Botga joylashuvingizni (lakatsiya) tashlang.");
         sendMessage.setChatId(chatId.toString());
         return sendMessage;
     }
