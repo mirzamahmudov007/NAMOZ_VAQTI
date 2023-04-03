@@ -131,8 +131,8 @@ public class PrayTime {
         System.out.println(asr);
         Date now = new Date();
         String time =//🌤
-                " \uD83C\uDF10 " + text + "\n" +
-                        "\uD83D\uDCC5️" + (now.getYear() + 1900) + "-йил " + now.getDate() + "-" + getMonthK(now.getMonth()) + " \n" +
+                " \uD83C\uDF10  " + text + "\n" +
+                        "\uD83D\uDCC5  ️" + (now.getYear() + 1900) + "-йил " + now.getDate() + "-" + getMonthK(now.getMonth()) + " \n" +
                         "-------------------------------------------------------------\n\n"+
                         "   \uD83C\uDF03  ️Тонг: 0" + prayerTimes.fajr.getHours() + ":" + fajr + "\n\n" +
                         "   \uD83C\uDF04  ️Қуёш: 0" + prayerTimes.sunrise.getHours() + ":" + sunrise + "\n\n" +
