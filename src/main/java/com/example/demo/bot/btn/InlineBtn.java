@@ -140,7 +140,7 @@ public class InlineBtn {
         inlineKeyboardMarkup.setKeyboard(rowList);
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());
-        sendMessage.setText("O'zingiz joylashgan viloyat nomini tanlang:");
+        sendMessage.setText("\n \uD83D\uDC40 O'zingiz joylashgan viloyat nomini tanlang:\n");
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         return sendMessage;
     } public SendMessage sendInlineKeyBoardRegionK(Long chatId) {

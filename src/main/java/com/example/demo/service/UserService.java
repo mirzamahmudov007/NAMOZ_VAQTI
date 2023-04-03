@@ -7,6 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 @Slf4j
 @Service
 public class UserService {
@@ -40,7 +44,7 @@ public class UserService {
         user.setFirstName(message.getFrom().getFirstName());
         user.setStep(null);
         user.setUserLang(null);
-        user =  userRepository.save(user);
+        user = userRepository.save(user);
         botServicel.memebers(user.getId());
         return user;
     }
@@ -76,7 +80,9 @@ public class UserService {
         user1 = user;
         user1.setOxirgiIsh(data);
         return userRepository.save(user1);
-    } public User bugungiNVMsgID(User user, Long id, Integer msgID) {
+    }
+
+    public User bugungiNVMsgID(User user, Long id, Integer msgID) {
         User user1 = new User();
         user1 = user;
         user1.setBugungiNamozVatiMsgID(msgID);
@@ -108,6 +114,28 @@ public class UserService {
         }
         log.info("IN findById - role: {} found by id: {}", user, id);
         return user;
+    }
+
+    public String newUser() {
+        List<User> users = userRepository.findAll();
+        Date date1 = new Date();
+        List<String> stringList = new ArrayList<>();
+        String text = null;
+        int i = 1;
+        for (User u :
+                users) {
+            if (u.getDate().getYear() == date1.getYear()
+                    && u.getDate().getMonth() == date1.getMonth()
+                    && u.getDate().getDay() == date1.getDay()) {
+                text = i + ". @" + u.getUsername() + "\n";
+                stringList.add(text);
+                i++;
+            }
+        }
+        for (int j = 0; j < stringList.size(); j++) {
+            text = stringList.get(j);
+        }
+        return text;
     }
 
     public User findByChatId(Long chatId) {
