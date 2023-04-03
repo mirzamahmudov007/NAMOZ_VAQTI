@@ -31,10 +31,10 @@ public class InlineBtn {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());
         sendMessage.setText("Assalomu Aleykum botga hush kelibsiz!\n" +
-                "O'zingiz uchun kerakli yozuv turini tanlang.\n" +
+                "O'zingiz uchun qulay yozuvni tanlang\n" +
                 "---------------------------------------------------------------------\n" +
                 "Aссалому Aлейкум Ботга Ҳуш келибсиз!\n" +
-                "Ўзингиз учун керакли ёзув турини танланг.");
+                "Ўзингиз учун кулай ёзувни танланг");
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         return sendMessage;
     } public SendMessage tilniOzgartirish(Long chatId) {
@@ -140,7 +140,9 @@ public class InlineBtn {
         inlineKeyboardMarkup.setKeyboard(rowList);
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());
-        sendMessage.setText("\n \uD83D\uDC40 O'zingiz joylashgan viloyat nomini tanlang:\n");
+        sendMessage.setText("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖" +
+                "\nO'zingiz joylashgan viloyat nomini tanlang:\n" +
+                "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         return sendMessage;
     } public SendMessage sendInlineKeyBoardRegionK(Long chatId) {
@@ -225,7 +227,9 @@ public class InlineBtn {
         inlineKeyboardMarkup.setKeyboard(rowList);
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());
-        sendMessage.setText("Ўзингиз жойлашган вилоят номини танланг:");
+        sendMessage.setText("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖" +
+                "\nЎзингиз жойлашган вилоят номини танланг\n" +
+                "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         return sendMessage;
     }
