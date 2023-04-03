@@ -4,6 +4,10 @@ import com.example.demo.bot.Step.DeleteStep;
 import com.example.demo.bot.Step.UserStep;
 import com.example.demo.bot.api.PrayTime;
 import com.example.demo.bot.btn.InlineBtn;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.demo.bot.btn.RegionBtn;
 import com.example.demo.bot.btn.viloyat.*;
 import com.example.demo.model.User;
@@ -92,18 +96,18 @@ public class Bot extends TelegramLongPollingBot {
                     user = userService.update(user, user.getId(), UserStep.select_lang); // step saved
                     sendInlineBtn(user.getChatId()); // inline btn
                     userService.updateOxirgiIsh(user, user.getId(), "/start");
-                }
-                else if (text.equals("/start") && user!=null) {
+                } else if (text.equals("/start") && user != null) {
                     user = userService.update(user, user.getId(), UserStep.select_lang); // step saved
                     replyRemove(user.getChatId().toString());
                     deleteInlineKeyboard1(message);
                     sendInlineBtn(user.getChatId());
                     userService.updateOxirgiIsh(user, user.getId(), "/start");
-                } else if (text.equals("/info_bot")) {
+                } else if (text.equals("/all_members")) {
                     sendMessage(user.getChatId().toString(), "Obunachilar soni: " + aboutBotService.getMembers());
-                }
-
-                else if (user.getOxirgiIsh().equals(DeleteStep.delete_hududni_oz)) {
+                } else if (text.equals("/new_members")) {
+                    sendMessage(user.getChatId().toString(), "Botga bugun a'zo bo'lgan obunachilar\n" +
+                            "" +userService.newUser());
+                } else if (user.getOxirgiIsh().equals(DeleteStep.delete_hududni_oz)) {
                     deleteInlineKeyboard(message);
                 } else if (text.equals("Hududni o'zgartirish ⚙️")) {
                     userService.updateOxirgiIsh(user, user.getId(), DeleteStep.delete_hududni_oz);
@@ -119,8 +123,7 @@ public class Bot extends TelegramLongPollingBot {
                     String lt1 = user.getStep().substring(0, 11);
                     String lt2 = user.getStep().substring(15, user.getStep().length());
                     MuvaffaqiyatliKrl(user.getChatId(), user.getData());
-//                        sendInlineKeyBoardRegionK(user.getChatId());
-                    userService.update(user, user.getId(), lt1 + "_krl_" + lt2);
+//                  userService.update(user, user.getId(), lt1 + "_krl_" + lt2);
                     deleteInlineKeyboard(message);
                     System.out.println(user.getStep());
                 } else if (text.equals("ЛОТИН ёзувига ўтиш\uD83D\uDD04") && user.getOxirgiIsh().equals(DeleteStep.delete_lt_ga_otish)) {
@@ -142,10 +145,9 @@ public class Bot extends TelegramLongPollingBot {
                     userService.update(user, user.getId(), UserStep.select_lang_krl);
                     deleteInlineKeyboard(message, message.getMessageId());
                 } else if (text.startsWith("⏰ Bugungi namoz vaqtlari")) {
-                    if (user.getStep().equals(UserStep.select_lang_lt_location)){
+                    if (user.getStep().equals(UserStep.select_lang_lt_location)) {
                         sendMessage(user.getChatId().toString(), setApi(user.getLat(), user.getLang(), "Siz turgan joy"));
-                    }
-                    else if (user.getStep().equals(UserStep.select_lang_lt_namangan)) {
+                    } else if (user.getStep().equals(UserStep.select_lang_lt_namangan)) {
                         if (user.getData().equals("Chust")) { // 41.00615643758215, 71.23771796120751
                             sendMessage(user.getChatId().toString(), setApi(40.999931, 71.236137, "Namangan, Chust tuman"));
                         } else if (user.getData().equals("Namangan")) { // Namangan shahar
@@ -440,10 +442,9 @@ public class Bot extends TelegramLongPollingBot {
                     deleteInlineKeyboard(message);
                 } else if (text.startsWith("⏰ Бугунги нaмоз вақтлари")) {
                     userService.updateOxirgiIsh(user, user.getId(), "⏰ Бугунги нaмоз вақтлари");
-                    if (user.getStep().equals(UserStep.select_lang_krl_location)){
-                        sendMessage(user.getChatId().toString() , setApi(user.getLat() , user.getLang() , "Сиз турган жой"));
-                    }
-                  else if (user.getData().equals("Andijon shahri")) {//40.7865585435806, 72.31208083702941
+                    if (user.getStep().equals(UserStep.select_lang_krl_location)) {
+                        sendMessage(user.getChatId().toString(), setApi(user.getLat(), user.getLang(), "Сиз турган жой"));
+                    } else if (user.getData().equals("Andijon shahri")) {//40.7865585435806, 72.31208083702941
                         sendMessage(user.getChatId().toString(), setApiK(40.7865585435806, 72.31208083702941, "Aндижон, Aндижон шаҳри"));
                     } else if (user.getData().equals("Xonobod")) { //40.79989825348597, 72.98951560333182
                         sendMessage(user.getChatId().toString(), setApiK(40.454055968860445, 72.98951560333182, "Aндижон, Хонобод"));
@@ -733,10 +734,10 @@ public class Bot extends TelegramLongPollingBot {
                 if (user.getStep().substring(12, 13).equals("k")) {
                     deleteInlineKeyboard1(message);
                     buttongaVatBnJonatishKrl(user.getChatId(), lat, lang, "Сиз турган жой", "");
-                    userService.update(user ,  user.getId() , UserStep.select_lang_krl_location);
+                    userService.update(user, user.getId(), UserStep.select_lang_krl_location);
                 } else {
                     deleteInlineKeyboard1(message);
-                    buttongaVatBnJonatish(user.getChatId(), lat,lang, "Siz turgan joy", "");
+                    buttongaVatBnJonatish(user.getChatId(), lat, lang, "Siz turgan joy", "");
                     userService.update(user, user.getId(), UserStep.select_lang_lt_location);
                 }
             }
@@ -754,11 +755,10 @@ public class Bot extends TelegramLongPollingBot {
                     user = userService.update(user, user.getId(), UserStep.select_lang_krl);
                 }
             } else if (data.equals("location")
-            && user.getStep().substring(12 , 13).equals("l")) {
+                    && user.getStep().substring(12, 13).equals("l")) {
                 locationBTN(user.getChatId());
                 userService.updateOxirgiIsh(user, user.getId(), "location_");
-            }
-            else if ( user.getStep().substring(12 , 13).equals("k") &&
+            } else if (user.getStep().substring(12, 13).equals("k") &&
                     data.equals("location")) {
                 locationBTNK(user.getChatId());
                 userService.updateOxirgiIsh(user, user.getId(), "location_");
@@ -2583,7 +2583,9 @@ public class Bot extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
-    }  public void locationBTNK(Long chatId) {
+    }
+
+    public void locationBTNK(Long chatId) {
         try {
             execute(regionBtn.locationBTNK(chatId));
         } catch (TelegramApiException e) {
@@ -2611,7 +2613,8 @@ public class Bot extends TelegramLongPollingBot {
             throw new RuntimeException(e);
         }
     }
- private void replyRemove_1(String chatId) {
+
+    private void replyRemove_1(String chatId) {
 
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);
@@ -2656,7 +2659,9 @@ public class Bot extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
-    } public void deleteInlineKeyboard_1(Message message) {
+    }
+
+    public void deleteInlineKeyboard_1(Message message) {
         DeleteMessage deleteMessage = new DeleteMessage();
         deleteMessage.setChatId(message.getChatId().toString());
         deleteMessage.setMessageId(message.getMessageId() - 1);
