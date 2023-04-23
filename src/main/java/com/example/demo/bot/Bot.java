@@ -5,9 +5,6 @@ import com.example.demo.bot.Step.UserStep;
 import com.example.demo.bot.api.PrayTime;
 import com.example.demo.bot.btn.InlineBtn;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.example.demo.bot.btn.RegionBtn;
 import com.example.demo.bot.btn.viloyat.*;
 import com.example.demo.model.User;
@@ -55,11 +52,13 @@ public class Bot extends TelegramLongPollingBot {
     private final Qashqadaryo qashqadaryo;
     private final Andijon andijon;
 
+    private final Surxandaryo surxandaryo;
+
     private final Sirdaryo sirdaryo;
 
     private final About_BotService aboutBotService;
 
-    public Bot(@Lazy InlineBtn btn, PrayTime prayTime, Navoiy navoiy, Xorazm xorazm, @Lazy UserService userService, Samarqand samarqand, RegionBtn regionBtn, @Lazy RestTemplate restTemplate, @Lazy Namangan namangan, Buxoro buxoro, Jizzah jizzah, @Lazy Fagona fagona, @Lazy Toshkent toshkent, Qashqadaryo qashqadaryo, @Lazy Andijon andijon, Sirdaryo sirdaryo, @Lazy About_BotService aboutBotService) {
+    public Bot(@Lazy InlineBtn btn, PrayTime prayTime, Navoiy navoiy, Xorazm xorazm, @Lazy UserService userService, Samarqand samarqand, RegionBtn regionBtn, @Lazy RestTemplate restTemplate, @Lazy Namangan namangan, Buxoro buxoro, Jizzah jizzah, @Lazy Fagona fagona, @Lazy Toshkent toshkent, Qashqadaryo qashqadaryo, @Lazy Andijon andijon, @Lazy Surxandaryo surxandaryo, Sirdaryo sirdaryo, @Lazy About_BotService aboutBotService) {
         this.btn = btn;
         this.prayTime = prayTime;
         this.navoiy = navoiy;
@@ -75,6 +74,7 @@ public class Bot extends TelegramLongPollingBot {
         this.toshkent = toshkent;
         this.qashqadaryo = qashqadaryo;
         this.andijon = andijon;
+        this.surxandaryo = surxandaryo;
         this.sirdaryo = sirdaryo;
         this.aboutBotService = aboutBotService;
     }
@@ -171,7 +171,8 @@ public class Bot extends TelegramLongPollingBot {
                         } else if (user.getData().equals("yangiqorgon")) { // Namangan shahar 41.198968289144275, 71.71703917988339
                             sendMessage(user.getChatId().toString(), setApi(41.198968289144275, 71.71703917988339, "Namangan, Yangoqo'rg'on"));
                         }
-                    } else if (user.getStep().equals(UserStep.select_lang_lt_toshkent)) {
+                    }
+                    else if (user.getStep().equals(UserStep.select_lang_lt_toshkent)) {
                         if (user.getData().equals("ToshknetSH")) { // 41.31862648082324, 69.26185247247427
                             sendMessage(user.getChatId().toString(), setApi(41.31862648082324, 69.26185247247427, "Toshkent ,Toshkent Shahar"));
                         } else if (user.getData().equals("chilonzor")) { // 41.25966068034852, 69.17981683014095
@@ -197,7 +198,8 @@ public class Bot extends TelegramLongPollingBot {
                         } else if (user.getData().equals("bekobod")) { // 40.454055968860445, 69.1819780480247
                             sendMessage(user.getChatId().toString(), setApi(40.454055968860445, 69.1819780480247, "Toshkent ,Bekobod"));
                         }
-                    } else if (user.getStep().equals(UserStep.select_lang_lt_fargona)) {
+                    }
+                    else if (user.getStep().equals(UserStep.select_lang_lt_fargona)) {
                         if (user.getData().equals("Farg‘ona shahar")) { //40.37949214005235, 71.78153222147638
                             sendMessage(user.getChatId().toString(), setApi(40.37949214005235, 71.78153222147638, "Farg'ona, Farg‘ona shahar"));
                         } else if (user.getData().equals("Uchko‘prik")) { //40.53267491097347, 71.02892566146784
@@ -237,7 +239,8 @@ public class Bot extends TelegramLongPollingBot {
                         } else if (user.getData().equals("Bag‘dod")) { //40.49387968871484, 71.20366862141532
                             sendMessage(user.getChatId().toString(), setApi(40.49387968871484, 71.20366862141532, "Farg'ona, Bag‘dod"));
                         }
-                    } else if (user.getStep().equals(UserStep.select_lang_lt_andijon)) {
+                    }
+                    else if (user.getStep().equals(UserStep.select_lang_lt_andijon)) {
                         if (user.getData().equals("Andijon shahri")) {//40.7865585435806, 72.31208083702941
                             sendMessage(user.getChatId().toString(), setApi(40.7865585435806, 72.31208083702941, "Andijon, Andijon shahar"));
                         } else if (user.getData().equals("Xonobod")) { //40.79989825348597, 72.98951560333182
@@ -269,7 +272,8 @@ public class Bot extends TelegramLongPollingBot {
                         } else if (user.getData().equals("Shahrixon")) { //40.705658566969085, 72.04954603823948
                             sendMessage(user.getChatId().toString(), setApi(40.705658566969085, 72.04954603823948, "Andijon, Shahrixon"));
                         }
-                    } else if (user.getStep().equals(UserStep.select_lang_lt_samarqand)) {
+                    }
+                    else if (user.getStep().equals(UserStep.select_lang_lt_samarqand)) {
                         if (user.getData().equals("Samarqand shahri")) {//39.65329327101519, 66.95826234725476
                             sendMessage(user.getChatId().toString(), setApi(39.65329327101519, 66.95826234725476, "Samarqand, Samarqand shahri"));
                         } else if (user.getData().equals("Bulung'ur")) {//39.70791766177822, 67.28142857964608
@@ -303,7 +307,8 @@ public class Bot extends TelegramLongPollingBot {
                         } else if (user.getData().equals("Qo'shrabot")) { //40.38655726843597, 66.5100175021684
                             sendMessage(user.getChatId().toString(), setApi(40.38655726843597, 66.5100175021684, "Samarqand, Qo'shrabot"));
                         }
-                    } else if (user.getStep().equals(UserStep.select_lang_lt_jizzah)) {
+                    }
+                    else if (user.getStep().equals(UserStep.select_lang_lt_jizzah)) {
                         if (user.getData().equals("Jizzax shahri")) {//40.11977007458388, 67.85232343283624
                             sendMessage(user.getChatId().toString(), setApi(40.11977007458388, 67.85232343283624, "Jizzah, Jizzax shahri"));
                         } else if (user.getData().equals("Arnasoy")) { //40.59901232957254, 67.79358090175431
@@ -331,7 +336,8 @@ public class Bot extends TelegramLongPollingBot {
                         } else if (user.getData().equals("Zomin")) { //39.88553183671697, 68.3643022291486
                             sendMessage(user.getChatId().toString(), setApi(39.88553183671697, 68.3643022291486, "Jizzah, Zomin"));
                         }
-                    } else if (user.getStep().equals(UserStep.select_lang_lt_buxoro)) {
+                    }
+                    else if (user.getStep().equals(UserStep.select_lang_lt_buxoro)) {
                         if (user.getData().equals("Buxoro shahri")) {//39.77672367865153, 64.4210785732946
                             sendMessage(user.getChatId().toString(), setApi(39.77672367865153, 64.4210785732946, "Buxoro, Buxoro shahri"));
                         } else if (user.getData().equals("Buxoro tumani")) { //39.63566090876281, 64.30230294221505
@@ -359,7 +365,8 @@ public class Bot extends TelegramLongPollingBot {
                         } else if (user.getData().equals("Vobkent")) { //40.15547517789773, 64.53244365200904
                             sendMessage(user.getChatId().toString(), setApi(40.15547517789773, 64.53244365200904, "Buxoro, Vobkent"));
                         }
-                    } else if (user.getStep().equals(UserStep.select_lang_lt_xorazm)) {
+                    }
+                    else if (user.getStep().equals(UserStep.select_lang_lt_xorazm)) {
                         if (user.getData().equals("Bog'ot")) {//41.33744153309746, 60.87694940015311
                             sendMessage(user.getChatId().toString(), setApi(41.33744153309746, 60.87694940015311, "Xorazm, Bog'ot"));
                         } else if (user.getData().equals("Gurlan")) {//41.90536583933732, 60.37982747138814
@@ -383,7 +390,8 @@ public class Bot extends TelegramLongPollingBot {
                         } else if (user.getData().equals("Yangiariq")) {// 41.346206916399666, 60.54804614851794
                             sendMessage(user.getChatId().toString(), setApi(41.346206916399666, 60.54804614851794, "Xorazm, Yangiariq"));
                         }
-                    } else if (user.getStep().equals(UserStep.select_lang_lt_navoiy)) {
+                    }
+                    else if (user.getStep().equals(UserStep.select_lang_lt_navoiy)) {
                         if (user.getData().equals("Navoiy shahri")) {//40.10166507561083, 65.3575344176788
                             sendMessage(user.getChatId().toString(), setApi(40.10166507561083, 65.3575344176788, "Navoiy, Navoiy shahri"));
                         } else if (user.getData().equals("Karmana")) {//40.14372322026956, 65.35467198347476
@@ -405,10 +413,12 @@ public class Bot extends TelegramLongPollingBot {
                         } else if (user.getData().equals("Zarafshon")) {//41.574460147847816, 64.18331570807477
                             sendMessage(user.getChatId().toString(), setApi(41.574460147847816, 64.18331570807477, "Navoiy, Zarafshon"));
                         }
-                    } else if (user.getStep().equals(UserStep.select_lang_lt_qashqadaryo)) {
+                    }
+                    else if (user.getStep().equals(UserStep.select_lang_lt_qashqadaryo)) {
                         if (user.getData().equals("Qarshi shahri")) {//38.86191354410989, 65.78491933285783
                             sendMessage(user.getChatId().toString(), setApi(38.86191354410989, 65.78491933285783, "Qashqadaryo, Qarshi shahri"));
-                        } else if (user.getData().equals("Qarshi tumani")) {//38.779267614177556, 65.75278333536036
+                        }
+                        else if (user.getData().equals("Qarshi tumani")) {//38.779267614177556, 65.75278333536036
                             sendMessage(user.getChatId().toString(), setApi(38.779267614177556, 65.75278333536036, "Qashqadaryo, Qarshi tumani"));
                         } else if (user.getData().equals("Chiroqchi")) {//39.18112111196543, 66.25891591391694
                             sendMessage(user.getChatId().toString(), setApi(39.18112111196543, 66.25891591391694, "Qashqadaryo, Chiroqchi"));
@@ -435,7 +445,42 @@ public class Bot extends TelegramLongPollingBot {
                         } else if (user.getData().equals("Yakkabog'")) {//38.90742740574835, 66.75665915180723
                             sendMessage(user.getChatId().toString(), setApi(38.90742740574835, 66.75665915180723, "Qashqadaryo, Yakkabog'"));
                         }
-                    } else if (user.getData().equals("location")) {
+                    }
+                    else if (user.getStep().equals(UserStep.select_lang_lt_surxandaryo)) {
+                        if (user.getData().equals("Angor")) {//40.7865585435806, 72.31208083702941
+//                            37.503269400643696, 67.12034472825793
+                            sendMessage(user.getChatId().toString(), setApi( 37.503269400643696, 67.12034472825793, "Surxondaryo, Angor"));
+                        } else if (user.getData().equals("Bandixon")) { //40.79989825348597, 72.98951560333182
+//                            37.87159797938313, 67.39210808358473
+                            sendMessage(user.getChatId().toString(), setApi(37.87159797938313, 67.39210808358473, "Surxondaryo, Bandixon"));
+                        } else if (user.getData().equals("Boysun")) {// 38.19707359021247, 67.19737761282035
+                            sendMessage(user.getChatId().toString(), setApi(38.19707359021247, 67.19737761282035, "Surxondaryo, Boysun"));
+                        } else if (user.getData().equals("Denov")) {//38.27575777387771, 67.89289117292158
+                            sendMessage(user.getChatId().toString(), setApi(38.27575777387771, 67.89289117292158, "Surxondaryo, Denov"));
+                        } else if (user.getData().equals("Jarqoʻrgʻon")) { //37.50937277577677, 67.42216415710062
+                            sendMessage(user.getChatId().toString(), setApi(37.50937277577677, 67.42216415710062, "Surxondaryo, Jarqoʻrgʻon"));
+                        } else if (user.getData().equals("Qiziriq")) { //37.680127776702385, 67.23913532680315
+                            sendMessage(user.getChatId().toString(), setApi(37.680127776702385, 67.23913532680315, "Surxondaryo, Qiziriq"));
+                        } else if (user.getData().equals("Qumqoʻrgʻon")) { //37.836545438757, 67.58130356044009
+                            sendMessage(user.getChatId().toString(), setApi(37.836545438757, 67.58130356044009, "Surxondaryo, Qumqoʻrgʻon"));
+                        } else if (user.getData().equals("Muzrabod")) {//37.48289222080369, 66.88495470998437
+                            sendMessage(user.getChatId().toString(), setApi(37.48289222080369, 66.88495470998437, "Surxondaryo, Muzrabod"));
+                        } else if (user.getData().equals("Oltinsoy")) { //38.17795415788861, 67.72232524456267
+                            sendMessage(user.getChatId().toString(), setApi(38.17795415788861, 67.72232524456267, "Surxondaryo, Oltinsoy"));
+                        } else if (user.getData().equals("Sariosiyo")) {// 38.40066111120099, 67.96826959981662
+                            sendMessage(user.getChatId().toString(), setApi(38.40066111120099, 67.96826959981662, "Surxondaryo, Sariosiyo"));
+                        } else if (user.getData().equals("Sherobod")) { //37.67197868329559, 67.01732992140701
+                            sendMessage(user.getChatId().toString(), setApi(37.67197868329559, 67.01732992140701, "Surxondaryo, Sherobod"));
+                        } else if (user.getData().equals("Shoʻrchi")) { // 38.00913765319851, 67.790555580946
+                            sendMessage(user.getChatId().toString(), setApi( 38.00913765319851, 67.790555580946, "Surxondaryo, Shoʻrchi"));
+                        } else if (user.getData().equals("Termiz")) { //37.3028523374682, 67.32365742527074
+                            sendMessage(user.getChatId().toString(), setApi(37.3028523374682, 67.32365742527074, "Surxondaryo, Termiz"));
+                        } else if (user.getData().equals("Uzun")) { // 38.343404400743154, 68.0250347123335
+                            sendMessage(user.getChatId().toString(), setApi(38.343404400743154, 68.0250347123335, "Surxondaryo, Uzun"));
+                        }
+                    }
+
+                    else if (user.getData().equals("location")) {
                         sendMessage(user.getChatId().toString(), setApi(user.getLat(), user.getLang(), "Lakatsiya bo'yicha"));
                         userService.updateLatLang(user, user.getId(), user.getLat(), user.getLang());
                     }
@@ -793,6 +838,10 @@ public class Bot extends TelegramLongPollingBot {
                 } else if (data.equals("qashqadaryo")) {
                     sendInlineQashqadaryo(user.getChatId());
                     userService.update(user, user.getChatId(), UserStep.select_lang_lt_qashqadaryo);
+                }
+                else if (data.equals("surxondaryo")) {
+                    sendInlineSurxon(user.getChatId());
+                    userService.update(user, user.getChatId(), UserStep.select_lang_lt_surxandaryo);
                 } else if (data.equals("location")) {
                     sendMessage(user.getChatId().toString(), "Iltimos o'zingiz joylashgan joy lakatsiyasini botga tashlang...");
                     userService.update(user, user.getId(), UserStep.select_lang_lt_location);
@@ -1414,7 +1463,8 @@ public class Bot extends TelegramLongPollingBot {
                     userService.updateData(user, user.getId(), data);
 //                    sendKunOy(user.getChatId(), data);
                 }
-            } else if (user.getStep().equals(UserStep.select_lang_lt_qashqadaryo)) {
+            }
+            else if (user.getStep().equals(UserStep.select_lang_lt_qashqadaryo)) {
                 if (data.equals("Qarshi shahri")) {//38.86191354410989, 65.78491933285783
 //                    sendMessage(user.getChatId().toString(), setApi(38.86191354410989, 65.78491933285783, "Qashqadaryo, Qarshi shahri"));
                     buttongaVatBnJonatish(user.getChatId(), 38.86191354410989, 65.78491933285783, "Qashqadaryo, Qarshi shahri", "Qarshi shahri");
@@ -1487,6 +1537,68 @@ public class Bot extends TelegramLongPollingBot {
 //                    sendKunOy(user.getChatId(), data);
                 }
             }
+            else if (user.getStep().equals(UserStep.select_lang_lt_surxandaryo)) {
+                if (data.equals("Angor")) {//40.7865585435806, 72.31208083702941
+//                            37.503269400643696, 67.12034472825793
+                    buttongaVatBnJonatish(user.getChatId(),  37.503269400643696, 67.12034472825793, "Surxondaryo, Angor", "Angor");
+                    userService.updateData(user, user.getId(), data);
+//                    sendMessage(user.getChatId().toString(), setApi( 37.503269400643696, 67.12034472825793, "Surxondaryo, Angor"));
+                } else if (data.equals("Bandixon")) { //40.79989825348597, 72.98951560333182
+//                            37.87159797938313, 67.39210808358473
+                    buttongaVatBnJonatish(user.getChatId(),  37.87159797938313, 67.39210808358473, "Surxondaryo, Bandixon", "Bandixon");
+                    userService.updateData(user, user.getId(), data);
+//                  sendMessage(user.getChatId().toString(), setApi(37.87159797938313, 67.39210808358473, "Surxondaryo, Bandixon"));
+                } else if (data.equals("Boysun")) {// 38.19707359021247, 67.19737761282035
+                    buttongaVatBnJonatish(user.getChatId(),  38.19707359021247, 67.19737761282035, "Surxondaryo, Boysun", "Boysun");
+                    userService.updateData(user, user.getId(), data);
+//                  sendMessage(user.getChatId().toString(), setApi(38.19707359021247, 67.19737761282035, "Surxondaryo, Boysun"));
+                } else if (data.equals("Denov")) {//38.27575777387771, 67.89289117292158
+                    buttongaVatBnJonatish(user.getChatId(),  38.27575777387771, 67.89289117292158, "Surxondaryo, Denov", "Denov");
+                    userService.updateData(user, user.getId(), data);
+//                  sendMessage(user.getChatId().toString(), setApi(38.27575777387771, 67.89289117292158, "Surxondaryo, Denov"));
+                } else if (data.equals("Jarqoʻrgʻon")) { //37.50937277577677, 67.42216415710062
+                    buttongaVatBnJonatish(user.getChatId(),  37.50937277577677, 67.42216415710062, "Surxondaryo, Jarqoʻrgʻon", "Jarqoʻrgʻon");
+                    userService.updateData(user, user.getId(), data);
+//                  sendMessage(user.getChatId().toString(), setApi(37.50937277577677, 67.42216415710062, "Surxondaryo, Jarqoʻrgʻon"));
+                } else if (data.equals("Qiziriq")) { //37.680127776702385, 67.23913532680315
+                    buttongaVatBnJonatish(user.getChatId(),  37.680127776702385, 67.23913532680315, "Surxondaryo, Qiziriq", "Qiziriq");
+                    userService.updateData(user, user.getId(), data);
+//                  sendMessage(user.getChatId().toString(), setApi(37.680127776702385, 67.23913532680315, "Surxondaryo, Qiziriq"));
+                } else if (data.equals("Qumqoʻrgʻon")) { //37.836545438757, 67.58130356044009
+                    buttongaVatBnJonatish(user.getChatId(),  37.836545438757, 67.58130356044009, "Surxondaryo, Qumqoʻrgʻon", "Qumqoʻrgʻon");
+                    userService.updateData(user, user.getId(), data);
+//                  sendMessage(user.getChatId().toString(), setApi(37.836545438757, 67.58130356044009, "Surxondaryo, Qumqoʻrgʻon"));
+                } else if (data.equals("Muzrabod")) {//37.48289222080369, 66.88495470998437
+                    buttongaVatBnJonatish(user.getChatId(),  37.48289222080369, 66.88495470998437, "Surxondaryo, Muzrabod", "Muzrabod");
+                    userService.updateData(user, user.getId(), data);
+//                  sendMessage(user.getChatId().toString(), setApi(37.48289222080369, 66.88495470998437, "Surxondaryo, Muzrabod"));
+                } else if (data.equals("Oltinsoy")) { //38.17795415788861, 67.72232524456267
+                    buttongaVatBnJonatish(user.getChatId(),  38.17795415788861, 67.72232524456267, "Surxondaryo, Oltinsoy", "Oltinsoy");
+                    userService.updateData(user, user.getId(), data);
+//                  sendMessage(user.getChatId().toString(), setApi(38.17795415788861, 67.72232524456267, "Surxondaryo, Oltinsoy"));
+                } else if (data.equals("Sariosiyo")) {// 38.40066111120099, 67.96826959981662
+                    buttongaVatBnJonatish(user.getChatId(),  38.40066111120099, 67.96826959981662, "Surxondaryo, Sariosiyo", "Sariosiyo");
+                    userService.updateData(user, user.getId(), data);
+//                  sendMessage(user.getChatId().toString(), setApi(38.40066111120099, 67.96826959981662, "Surxondaryo, Sariosiyo"));
+                } else if (data.equals("Sherobod")) { //37.67197868329559, 67.01732992140701
+                    buttongaVatBnJonatish(user.getChatId(), 37.67197868329559, 67.01732992140701, "Surxondaryo, Sherobod", "Sherobod");
+                    userService.updateData(user, user.getId(), data);
+//                  sendMessage(user.getChatId().toString(), setApi(37.67197868329559, 67.01732992140701, "Surxondaryo, Sherobod"));
+                } else if (data.equals("Shoʻrchi")) { // 38.00913765319851, 67.790555580946
+                    buttongaVatBnJonatish(user.getChatId(),   38.00913765319851, 67.790555580946, "Surxondaryo, Shoʻrchi", "Shoʻrchi");
+                    userService.updateData(user, user.getId(), data);
+//                  sendMessage(user.getChatId().toString(), setApi( 38.00913765319851, 67.790555580946, "Surxondaryo, Shoʻrchi"));
+                } else if (data.equals("Termiz")) { //37.3028523374682, 67.32365742527074
+                    buttongaVatBnJonatish(user.getChatId(),  37.3028523374682, 67.32365742527074, "Surxondaryo, Termiz", "Termiz");
+                    userService.updateData(user, user.getId(), data);
+//                  sendMessage(user.getChatId().toString(), setApi(37.3028523374682, 67.32365742527074, "Surxondaryo, Termiz"));
+                } else if (data.equals("Uzun")) { // 38.343404400743154, 68.0250347123335
+                    buttongaVatBnJonatish(user.getChatId(),  38.343404400743154, 68.0250347123335, "Surxondaryo, Uzun", "Uzun");
+                    userService.updateData(user, user.getId(), data);
+//                  sendMessage(user.getChatId().toString(), setApi(38.343404400743154, 68.0250347123335, "Surxondaryo, Uzun"));
+                }
+            }
+
 //            else if (user.getStep().equals(UserStep.select_lang_lt_sirdaryo)) {
 //                if (data.equals("Boyovut")){ //
 //                    buttongaVatBnJonatish(user.getChatId(),  , , "Sirdaryo, Boyovut", " ");
@@ -2484,6 +2596,13 @@ public class Bot extends TelegramLongPollingBot {
     private void sendInlineQashqadaryo(Long id) {
         try {
             execute(qashqadaryo.namanganTumans(id));
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void sendInlineSurxon(Long id) {
+        try {
+            execute(surxandaryo.namanganTumans(id));
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }

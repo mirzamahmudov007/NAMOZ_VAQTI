@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.bot.Step.UserStep;
 import com.example.demo.dto.UserDto;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
@@ -138,7 +139,17 @@ public class UserService {
         return text;
     }
 
+
+    public void bonusPluss(String username) {
+       User user =  findByUsername(username);
+       user.setBonusCount(user.getBonusCount()+1);
+       userRepository.save(user);
+    }
     public User findByChatId(Long chatId) {
         return userRepository.findByChatId(chatId);
     }
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
 }

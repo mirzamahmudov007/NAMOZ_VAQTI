@@ -15,6 +15,8 @@ import javax.xml.stream.Location;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -31,6 +33,7 @@ public class User implements Serializable {
 
     private String lastName;
 
+    private Integer bonusCount;
     @CreatedDate
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     @Column(updatable = false )
@@ -43,7 +46,8 @@ public class User implements Serializable {
 
     private String userLang;
 
-
+    @OneToMany
+    private Set<BonusUser> bonusUsers;
     private String step;
 
     private String UserRegion;
