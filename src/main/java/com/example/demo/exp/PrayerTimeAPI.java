@@ -10,7 +10,7 @@ public class PrayerTimeAPI {
 
     //    private static final String API_URL = "https://api.pray.zone/v2/times/today.json?";
 //
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ExceptionDeleteNotMessage {
 //        double latitude = 37.7749;
 //        double longitude = -122.4194;
 //

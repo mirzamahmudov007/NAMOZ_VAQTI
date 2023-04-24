@@ -114,100 +114,89 @@ public class Surxandaryo {
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         InlineKeyboardButton inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Aндижон шаҳри");
-        inlineKeyboardButton1.setCallbackData("Andijon shahri");
+        inlineKeyboardButton1.setText("Aнгор");
+        inlineKeyboardButton1.setPay(true);
+        inlineKeyboardButton1.setCallbackData("Angor");
         List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Хонобод");
-        inlineKeyboardButton1.setCallbackData("Xonobod");
+        inlineKeyboardButton1.setText("Бандихон");
+        inlineKeyboardButton1.setCallbackData("Bandixon");
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         rowList.add(keyboardButtonsRow1);
 
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Aсака");
-        inlineKeyboardButton1.setCallbackData("Asaka");
+        inlineKeyboardButton1.setText("Бойсун");
+        inlineKeyboardButton1.setCallbackData("Boysun");
         keyboardButtonsRow1 = new ArrayList<>();
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Балиқчи");
-        inlineKeyboardButton1.setCallbackData("Baliqchi");
+        inlineKeyboardButton1.setText("Денов");
+        inlineKeyboardButton1.setCallbackData("Denov");
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         rowList.add(keyboardButtonsRow1);
 
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Бўз");
-        inlineKeyboardButton1.setCallbackData("Bo'z");
+        inlineKeyboardButton1.setText("Жарқўрғон");
+        inlineKeyboardButton1.setCallbackData("Jarqoʻrgʻon");
         keyboardButtonsRow1 = new ArrayList<>();
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Булоқбоши");
-        inlineKeyboardButton1.setCallbackData("Buloqboshi");
+        inlineKeyboardButton1.setText("Қизириқ");
+        inlineKeyboardButton1.setCallbackData("Qiziriq");
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         rowList.add(keyboardButtonsRow1);
 
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Избоскан");
-        inlineKeyboardButton1.setCallbackData("Izboskan");
+        inlineKeyboardButton1.setText("Қумқўрғон");
+        inlineKeyboardButton1.setCallbackData("Qumqoʻrgʻon");
         keyboardButtonsRow1 = new ArrayList<>();
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Жалолқудуқ");
-        inlineKeyboardButton1.setCallbackData("Jalolquduq");
+        inlineKeyboardButton1.setText("Музрабод");
+        inlineKeyboardButton1.setCallbackData("Muzrabod");
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         rowList.add(keyboardButtonsRow1);
 
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Марҳамат");
-        inlineKeyboardButton1.setCallbackData("Marhamat");
+        inlineKeyboardButton1.setText("Олтинсой");
+        inlineKeyboardButton1.setCallbackData("Oltinsoy");
         keyboardButtonsRow1 = new ArrayList<>();
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Олтинкўл");
-        inlineKeyboardButton1.setCallbackData("Oltinko'l");
+        inlineKeyboardButton1.setText("Сариосиё");
+        inlineKeyboardButton1.setCallbackData("Sariosiyo");
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         rowList.add(keyboardButtonsRow1);
 
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Пахтаобод");
-        inlineKeyboardButton1.setCallbackData("Paxtaobod");
+        inlineKeyboardButton1.setText("Шеробод");
+        inlineKeyboardButton1.setCallbackData("Sherobod");
         keyboardButtonsRow1 = new ArrayList<>();
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Қўрғонтепа");
-        inlineKeyboardButton1.setCallbackData("Qo'rg'ontepa");
+        inlineKeyboardButton1.setText("Шўрчи");
+        inlineKeyboardButton1.setCallbackData("Shoʻrchi");
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         rowList.add(keyboardButtonsRow1);
 
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Улуғнор");
-        inlineKeyboardButton1.setCallbackData("Ulug'nor");
+        inlineKeyboardButton1.setText("Термиз");
+        inlineKeyboardButton1.setCallbackData("Termiz");
         keyboardButtonsRow1 = new ArrayList<>();
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Хўжаобод");
-        inlineKeyboardButton1.setCallbackData("Xo'jaobod");
-        keyboardButtonsRow1.add(inlineKeyboardButton1);
-        rowList.add(keyboardButtonsRow1);
-
-        inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Шаҳрихон");
-        inlineKeyboardButton1.setCallbackData("Shahrixon");
-        keyboardButtonsRow1 = new ArrayList<>();
-        keyboardButtonsRow1.add(inlineKeyboardButton1);
-        inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("\t");
-        inlineKeyboardButton1.setCallbackData("qsq");
+        inlineKeyboardButton1.setText("Узун");
+        inlineKeyboardButton1.setCallbackData("Uzun");
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         rowList.add(keyboardButtonsRow1);
 
         keyboardButtonsRow1 = new ArrayList<>();
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("жойлашув бўйича");
+        inlineKeyboardButton1.setText("joylashuv bo'yicha ");
         inlineKeyboardButton1.setCallbackData("location");
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         rowList.add(keyboardButtonsRow1);
-
 
         inlineKeyboardMarkup.setKeyboard(rowList);
         SendMessage sendMessage = new SendMessage();
@@ -218,4 +207,5 @@ public class Surxandaryo {
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         return sendMessage;
     }
+
 }

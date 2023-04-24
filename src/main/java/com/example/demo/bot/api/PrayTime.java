@@ -44,7 +44,7 @@ public class PrayTime {
         PrayerTimes prayerTimes = new PrayerTimes(coordinates, date, params);
 
         SunnahTimes sunnahTimes = new SunnahTimes(prayerTimes);
-        System.out.println(prayerTimes.asr);
+//        System.out.println(prayerTimes.asr);
 
         String asr = String.valueOf(prayerTimes.asr.toString().substring(prayerTimes.asr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
         String fajr = String.valueOf(prayerTimes.fajr.toString().substring(prayerTimes.fajr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
@@ -53,7 +53,7 @@ public class PrayTime {
         String isha = String.valueOf(prayerTimes.isha.toString().substring(prayerTimes.isha.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
         String dhuhr = String.valueOf(prayerTimes.dhuhr.toString().substring(prayerTimes.dhuhr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
 
-        System.out.println(asr);
+//        System.out.println(asr);
         Date now = new Date();
         String time =
                 " \uD83C\uDF10 ️ " + text + "\n" +
@@ -81,7 +81,7 @@ public class PrayTime {
         PrayerTimes prayerTimes = new PrayerTimes(coordinates, date, params);
 
         SunnahTimes sunnahTimes = new SunnahTimes(prayerTimes);
-        System.out.println(prayerTimes.asr);
+//        System.out.println(prayerTimes.asr);
 
         String asr = String.valueOf(prayerTimes.asr.toString().substring(prayerTimes.asr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
         String fajr = String.valueOf(prayerTimes.fajr.toString().substring(prayerTimes.fajr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
@@ -90,7 +90,7 @@ public class PrayTime {
         String isha = String.valueOf(prayerTimes.isha.toString().substring(prayerTimes.isha.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
         String dhuhr = String.valueOf(prayerTimes.dhuhr.toString().substring(prayerTimes.dhuhr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
 
-        System.out.println(asr);
+//        System.out.println(asr);
         Date now = new Date();
         String time =
                 " \uD83C\uDF10 ️ " + text + "\n" +
@@ -119,7 +119,7 @@ public class PrayTime {
         PrayerTimes prayerTimes = new PrayerTimes(coordinates, date, params);
 
         SunnahTimes sunnahTimes = new SunnahTimes(prayerTimes);
-        System.out.println(prayerTimes.asr);
+//        System.out.println(prayerTimes.asr);
 
         String asr = String.valueOf(prayerTimes.asr.toString().substring(prayerTimes.asr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
         String fajr = String.valueOf(prayerTimes.fajr.toString().substring(prayerTimes.fajr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
@@ -128,7 +128,7 @@ public class PrayTime {
         String isha = String.valueOf(prayerTimes.isha.toString().substring(prayerTimes.isha.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
         String dhuhr = String.valueOf(prayerTimes.dhuhr.toString().substring(prayerTimes.dhuhr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
 
-        System.out.println(asr);
+//        System.out.println(asr);
         Date now = new Date();
         String time =//🌤
                 " \uD83C\uDF10  " + text + "\n" +

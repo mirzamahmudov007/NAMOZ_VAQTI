@@ -17,12 +17,12 @@ public class InlineBtn {
     public SendMessage sendInlineKeyBoardMessage(Long chatId) {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         InlineKeyboardButton inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("LOTIN ");
+        inlineKeyboardButton1.setText("LOTIN \uD83C\uDDFA\uD83C\uDDFF");
         inlineKeyboardButton1.setCallbackData("lt");
         List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("КРИЛ");
+        inlineKeyboardButton1.setText("КРИЛ \uD83C\uDDFA\uD83C\uDDFF");
         inlineKeyboardButton1.setCallbackData("krl");
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
@@ -31,10 +31,10 @@ public class InlineBtn {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());
         sendMessage.setText("Assalomu Aleykum botga hush kelibsiz!\n" +
-                "O'zingiz uchun qulay yozuvni tanlang\n" +
+                "O'zingiz uchun qulay yozuvni tanlang\uD83D\uDC47\uD83C\uDFFB\n" +
                 "---------------------------------------------------------------------\n" +
                 "Aссалому Aлейкум Ботга Ҳуш келибсиз!\n" +
-                "Ўзингиз учун кулай ёзувни танланг");
+                "Ўзингиз учун кулай ёзувни танланг\uD83D\uDC47\uD83C\uDFFB");
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         return sendMessage;
     } public SendMessage tilniOzgartirish(Long chatId) {
@@ -124,8 +124,10 @@ public class InlineBtn {
         keyboardButtonsRow1 = new ArrayList<>();
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Sirdaryo");
-        inlineKeyboardButton1.setCallbackData("sirdaryo");
+//        inlineKeyboardButton1.setText("Sirdaryo");
+//        inlineKeyboardButton1.setCallbackData("sirdaryo");
+        inlineKeyboardButton1.setText(" ");
+        inlineKeyboardButton1.setCallbackData(".");
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         rowList.add(keyboardButtonsRow1);
 
