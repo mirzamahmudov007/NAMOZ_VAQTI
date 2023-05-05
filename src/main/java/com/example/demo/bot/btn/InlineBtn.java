@@ -213,8 +213,8 @@ public class InlineBtn {
         keyboardButtonsRow1 = new ArrayList<>();
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         inlineKeyboardButton1 = new InlineKeyboardButton();
-        inlineKeyboardButton1.setText("Сирдарё");
-        inlineKeyboardButton1.setCallbackData("sirdaryo");
+        inlineKeyboardButton1.setText(" \t");
+        inlineKeyboardButton1.setCallbackData(".");
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         rowList.add(keyboardButtonsRow1);
 

@@ -21,7 +21,7 @@ public interface UserStep {
     String select_lang_lt_jizzah = "select_lang_lt_jizzah";
     String select_lang_krl_jizzah = "select_lang_krl_jizzah";
     String select_lang_lt_xorazm = "select_lang_lt_xorazm";
-    String select_lang_krl_xorazm = "getSelect_lang_krl_xorazm";
+    String select_lang_krl_xorazm = "select_lang_krl_xorazm";
     String select_lang_lt_sirdaryo = "select_lang_lt_sirdaryo";
     String select_lang_lt_surxandaryo = "select_lang_lt_surxandaryo";
     String select_lang_lt_qashqadaryo = "select_lang_lt_qashqadaryo";

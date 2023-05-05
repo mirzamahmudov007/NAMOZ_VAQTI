@@ -87,7 +87,7 @@ public class Toshkent {
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         inlineKeyboardButton1 = new InlineKeyboardButton();
         inlineKeyboardButton1.setText("\t");
-        inlineKeyboardButton1.setCallbackData("a");
+        inlineKeyboardButton1.setCallbackData(".");
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         rowList.add(keyboardButtonsRow1);
 
@@ -185,7 +185,7 @@ public class Toshkent {
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         inlineKeyboardButton1 = new InlineKeyboardButton();
         inlineKeyboardButton1.setText("\t");
-        inlineKeyboardButton1.setCallbackData("a");
+        inlineKeyboardButton1.setCallbackData(".");
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         rowList.add(keyboardButtonsRow1);
 

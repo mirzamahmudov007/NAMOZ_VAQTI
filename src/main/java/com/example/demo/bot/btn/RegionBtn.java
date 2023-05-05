@@ -59,33 +59,33 @@ public class RegionBtn {
         return sendMessage;
     }
 
-    public SendMessage kunOy(Long chatId, String data) {
-        SendMessage sendMessage = new SendMessage();
-        ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup();
-        markup.setResizeKeyboard(true);
-        List<KeyboardRow> rows = new ArrayList<KeyboardRow>();
-        KeyboardRow row = new KeyboardRow();
-
-        KeyboardButton button = new KeyboardButton();
-        button.setText("⏰ Bugungi nomoz vaqtlari");
-        row.add(button);
-        rows.add(row);
-
-        button = new KeyboardButton();
-        row = new KeyboardRow();
-        button.setText("KRIL yozuviga o'tish \uD83D\uDD04");
-        row.add(button);
-        button = new KeyboardButton();
-        button.setText("Hududni o'zgartirish ⚙️");
-        row.add(button);
-        rows.add(row);
-
-        markup.setKeyboard(rows);
-        sendMessage.setReplyMarkup(markup);
-        sendMessage.setText("✅ Manzilingiz( " + data + " ) saqlandi namoz vaqtini bilish uchun pastdagi tugmalardan foydalaning.");
-        sendMessage.setChatId(chatId.toString());
-        return sendMessage;
-    }
+//    public SendMessage kunOy(Long chatId, String data) {
+//        SendMessage sendMessage = new SendMessage();
+//        ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup();
+//        markup.setResizeKeyboard(true);
+//        List<KeyboardRow> rows = new ArrayList<KeyboardRow>();
+//        KeyboardRow row = new KeyboardRow();
+//
+//        KeyboardButton button = new KeyboardButton();
+//        button.setText("⏰ Bugungi nomoz vaqtlari");
+//        row.add(button);
+//        rows.add(row);
+//
+//        button = new KeyboardButton();
+//        row = new KeyboardRow();
+//        button.setText("KRIL yozuviga o'tish \uD83D\uDD04");
+//        row.add(button);
+//        button = new KeyboardButton();
+//        button.setText("Hududni o'zgartirish ⚙️");
+//        row.add(button);
+//        rows.add(row);
+//
+//        markup.setKeyboard(rows);
+//        sendMessage.setReplyMarkup(markup);
+//        sendMessage.setText("✅ Manzilingiz( " + data + " ) saqlandi namoz vaqtini bilish uchun pastdagi tugmalardan foydalaning.");
+//        sendMessage.setChatId(chatId.toString());
+//        return sendMessage;
+//    }
 
     public SendMessage buttongaVatBnJonatish(Long chatId, double lat, double lang, String text, String data) {
         SendMessage sendMessage = new SendMessage();
