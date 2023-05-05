@@ -32,7 +32,7 @@ public class InlineBtn {
         sendMessage.setChatId(chatId.toString());
         sendMessage.setText("Assalomu Aleykum botga hush kelibsiz!\n" +
                 "O'zingiz uchun qulay yozuvni tanlang\uD83D\uDC47\uD83C\uDFFB\n" +
-                "---------------------------------------------------------------------\n" +
+                "\n" +
                 "Aссалому Aлейкум Ботга Ҳуш келибсиз!\n" +
                 "Ўзингиз учун кулай ёзувни танланг\uD83D\uDC47\uD83C\uDFFB");
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
@@ -63,9 +63,9 @@ public class InlineBtn {
         List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
         InlineKeyboardButton inlineKeyboardButton1 = new InlineKeyboardButton();
+        List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
         inlineKeyboardButton1.setText("Toshket ");
         inlineKeyboardButton1.setCallbackData("toshkent");
-        List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         inlineKeyboardButton1 = new InlineKeyboardButton();
         inlineKeyboardButton1.setText("Namangan");
@@ -142,9 +142,9 @@ public class InlineBtn {
         inlineKeyboardMarkup.setKeyboard(rowList);
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());
-        sendMessage.setText("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖" +
+        sendMessage.setText("" +
                 "\nO'zingiz joylashgan viloyat nomini tanlang:\n" +
-                "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
+                "");
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         return sendMessage;
     } public SendMessage sendInlineKeyBoardRegionK(Long chatId) {
@@ -229,9 +229,9 @@ public class InlineBtn {
         inlineKeyboardMarkup.setKeyboard(rowList);
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());
-        sendMessage.setText("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖" +
+        sendMessage.setText("" +
                 "\nЎзингиз жойлашган вилоят номини танланг\n" +
-                "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
+                "");
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         return sendMessage;
     }

@@ -3,6 +3,7 @@ package com.example.demo.bot;
 import com.example.demo.bot.Step.DeleteStep;
 import com.example.demo.bot.Step.UserStep;
 import com.example.demo.bot.api.PrayTime;
+import com.example.demo.bot.btn.Admin;
 import com.example.demo.bot.btn.InlineBtn;
 
 import com.example.demo.bot.btn.RegionBtn;
@@ -10,6 +11,7 @@ import com.example.demo.bot.btn.viloyat.*;
 import com.example.demo.exp.ExceptionDeleteNotMessage;
 import com.example.demo.model.User;
 import com.example.demo.service.About_BotService;
+import com.example.demo.service.TemperatureService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
@@ -22,7 +24,6 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardRemove;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -54,13 +55,15 @@ public class Bot extends TelegramLongPollingBot {
     private final Qashqadaryo qashqadaryo;
     private final Andijon andijon;
 
+    private final Admin admin;
     private final Surxandaryo surxandaryo;
 
     private final Sirdaryo sirdaryo;
 
+    private final TemperatureService temperatureService;
     private final About_BotService aboutBotService;
 
-    public Bot(@Lazy InlineBtn btn, PrayTime prayTime, Navoiy navoiy, Xorazm xorazm, @Lazy UserService userService, Samarqand samarqand, RegionBtn regionBtn, @Lazy RestTemplate restTemplate, @Lazy Namangan namangan, Buxoro buxoro, Jizzah jizzah, @Lazy Fagona fagona, @Lazy Toshkent toshkent, Qashqadaryo qashqadaryo, @Lazy Andijon andijon, @Lazy Surxandaryo surxandaryo, Sirdaryo sirdaryo, @Lazy About_BotService aboutBotService) {
+    public Bot(@Lazy InlineBtn btn, PrayTime prayTime, Navoiy navoiy, Xorazm xorazm, @Lazy UserService userService, Samarqand samarqand, RegionBtn regionBtn, @Lazy RestTemplate restTemplate, @Lazy Namangan namangan, Buxoro buxoro, Jizzah jizzah, @Lazy Fagona fagona, @Lazy Toshkent toshkent, Qashqadaryo qashqadaryo, @Lazy Andijon andijon, Admin admin, @Lazy Surxandaryo surxandaryo, Sirdaryo sirdaryo, @Lazy TemperatureService temperatureService, @Lazy About_BotService aboutBotService) {
         this.btn = btn;
         this.prayTime = prayTime;
         this.navoiy = navoiy;
@@ -76,8 +79,10 @@ public class Bot extends TelegramLongPollingBot {
         this.toshkent = toshkent;
         this.qashqadaryo = qashqadaryo;
         this.andijon = andijon;
+        this.admin = admin;
         this.surxandaryo = surxandaryo;
         this.sirdaryo = sirdaryo;
+        this.temperatureService = temperatureService;
         this.aboutBotService = aboutBotService;
     }
 
@@ -91,30 +96,44 @@ public class Bot extends TelegramLongPollingBot {
             if (message.hasText()) {
                 String text = message.getText();
                 if (text.equals("/start") && user == null) {
+                    System.out.println("...........");
                     if (!userService.existByChatId(message.getChatId())) {
                         User userSave = userService.saveUser(message);
                         user = userSave;
+                        aboutBotService.memebers(user.getId());
                     }
                     user = userService.update(user, user.getId(), UserStep.select_lang); // step saved
                     sendInlineBtn(user.getChatId()); // inline btn
                     userService.updateOxirgiIsh(user, user.getId(), "/start");
-                } else if (text.equals("/start") && user != null) {
+                }
+                else if (text.equals("/start") && user != null) {
                     user = userService.update(user, user.getId(), UserStep.select_lang); // step saved
                     replyRemove(user.getChatId().toString());
                     deleteInlineKeyboard1(message);
                     sendInlineBtn(user.getChatId());
                     userService.updateOxirgiIsh(user, user.getId(), "/start");
-                } else if (text.equals("/all_members")) {
-                    sendMessage(user.getChatId().toString(), "Obunachilar soni: " + aboutBotService.getMembers());
+                } else if (text.equals("/followers_count")) {
+                    sendMessage(user.getChatId().toString(), "Obunachilar soni: " + aboutBotService.newUser()
+                    +"\nAdmin: @uzz2003");
+                } else if (text.equals("/all_followers")) {
+                    for (int i = 0; i < aboutBotService.getViewcount(); i++) {
+                        sendMessage(user.getChatId().toString(), "Obunachilar : " + aboutBotService.getView(i));
+                    }
                 }
-                else if (text.equals("/new_members")) {
-                    sendMessage(user.getChatId().toString(), "Botga bugun a'zo bo'lgan obunachilar\n" +
-                            "" + userService.newUser());
-                } else if (user.getOxirgiIsh().equals(DeleteStep.delete_hududni_oz)) {
+                else if (text.equals("/today_followers")) {
+//                    sendMessage(user.getChatId().toString(), "Botga bugun a'zo bo'lgan obunachilar\n" +
+//                            "" + userService.newUser());
+//                }
+                    for (int i = 0; i < userService.newUsercount()-1; i++) {
+                        sendMessage(user.getChatId().toString(), "Botga bugun a'zo bo'lgan obunachilar\n" +
+                                "" + userService.newUser(i));
+                    }
+                }
+                else if (user.getOxirgiIsh().equals(DeleteStep.delete_hududni_oz)) {
                     deleteInlineKeyboard(message);
                 } else if (text.equals("Hududni o'zgartirish ⚙️")) {
                     userService.updateOxirgiIsh(user, user.getId(), DeleteStep.delete_hududni_oz);
-                    replyRemove(user.getChatId().toString());
+                        replyRemove(user.getChatId().toString());
                     deleteInlineKeyboard1(message);
                     getRegionInline(user.getChatId());
                     userService.update(user, user.getId(), UserStep.select_lang_lt);
@@ -838,7 +857,7 @@ public class Bot extends TelegramLongPollingBot {
                         sendInlineKeyBoardRegionK(user.getChatId());
                         user = userService.update(user, user.getId(), UserStep.select_lang_krl);
                     }
-                } else if (data.equals("location")
+                }  else if (data.equals("location")
                         && user.getStep().substring(12, 13).equals("l")) {
                     locationBTN(user.getChatId());
                     userService.updateOxirgiIsh(user, user.getId(), "location_");
@@ -2513,6 +2532,14 @@ public class Bot extends TelegramLongPollingBot {
     public void sendInlineBtn(Long chatId) {
         try {
             execute(btn.sendInlineKeyBoardMessage(chatId));
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+public void admin(Long chatId) {
+        try {
+            execute(admin.sendInlineKeyBoardMessage(chatId));
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }

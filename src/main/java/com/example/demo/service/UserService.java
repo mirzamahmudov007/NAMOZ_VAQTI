@@ -117,7 +117,21 @@ public class UserService {
         return user;
     }
 
-    public String newUser() {
+    public String newUser(int i) {
+        List<User> users = userRepository.findAll();
+        Date date1 = new Date();
+        String text = null;
+
+            if (users.get(i).getDate().getYear() == date1.getYear()
+                    && users.get(i).getDate().getMonth() == date1.getMonth()
+                    && users.get(i).getDate().getDay() == date1.getDay()) {
+                text = i + ". @" + users.get(i).getUsername() + "\n";
+            }
+
+        return text;
+    }
+
+    public int newUsercount() {
         List<User> users = userRepository.findAll();
         Date date1 = new Date();
         List<String> stringList = new ArrayList<>();
@@ -128,26 +142,23 @@ public class UserService {
             if (u.getDate().getYear() == date1.getYear()
                     && u.getDate().getMonth() == date1.getMonth()
                     && u.getDate().getDay() == date1.getDay()) {
-                text = i + ". @" + u.getUsername() + "\n";
-                stringList.add(text);
                 i++;
             }
         }
-        for (int j = 0; j < stringList.size(); j++) {
-            text = stringList.get(j);
-        }
-        return text;
+        return i;
     }
 
 
     public void bonusPluss(String username) {
-       User user =  findByUsername(username);
-       user.setBonusCount(user.getBonusCount()+1);
-       userRepository.save(user);
+        User user = findByUsername(username);
+        user.setBonusCount(user.getBonusCount() + 1);
+        userRepository.save(user);
     }
+
     public User findByChatId(Long chatId) {
         return userRepository.findByChatId(chatId);
     }
+
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }

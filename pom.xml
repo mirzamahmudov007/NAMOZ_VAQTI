@@ -50,7 +50,11 @@
 			<version>5.6.0</version>
 		</dependency>
 
-
+		<dependency>
+			<groupId>io.mraa.upm</groupId>
+			<artifactId>upm_temperature</artifactId>
+			<version>1.7.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
