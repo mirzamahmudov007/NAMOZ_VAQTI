@@ -182,9 +182,9 @@ public class Xorazm {
         inlineKeyboardMarkup.setKeyboard(rowList);
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());
-        sendMessage.setText("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n" +
+        sendMessage.setText("\n" +
                 "Ўзингиз жойлашган Туманни танланг:\n" +
-                "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
+                "");
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         return sendMessage;
     }

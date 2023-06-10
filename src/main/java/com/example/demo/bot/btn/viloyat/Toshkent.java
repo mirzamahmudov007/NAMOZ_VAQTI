@@ -103,9 +103,9 @@ public class Toshkent {
         inlineKeyboardMarkup.setKeyboard(rowList);
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());
-        sendMessage.setText("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n" +
+        sendMessage.setText("\n" +
                 "     O'zingiz joylashgan Tumanni tanlang:\n" +
-                "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
+                "");
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         return sendMessage;
     } public SendMessage namanganTumansK(Long chatId) {
@@ -201,9 +201,9 @@ public class Toshkent {
         inlineKeyboardMarkup.setKeyboard(rowList);
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId.toString());
-        sendMessage.setText("➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n" +
+        sendMessage.setText("\n" +
                 "Ўзингиз жойлашган Туманни танланг:\n" +
-                "➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖");
+                "");
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         return sendMessage;
     }

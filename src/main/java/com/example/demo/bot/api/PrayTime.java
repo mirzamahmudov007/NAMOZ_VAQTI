@@ -59,13 +59,13 @@ public class PrayTime {
         String time =
                     " \uD83C\uDF10 ️ " + text + "\n" +
                             "\uD83D\uDCC5️  " + (now.getYear() + 1900) + "-yil " + now.getDate() + "-" + getMonth(now.getMonth()) + " \n" +
-                            "\n" +
+                            "➖➖➖➖➖➖➖➖➖➖➖➖\n" +
                             "   \uD83C\uDF03  ️Tong: 0" + prayerTimes.fajr.getHours() + ":" + fajr + "\n\n" +
                             "   \uD83C\uDF04  ️Quyosh: 0" + prayerTimes.sunrise.getHours() + ":" + sunrise + "\n\n" +
                             "   \uD83C\uDFDE  ️Peshin: " + prayerTimes.dhuhr.getHours() + ":" + dhuhr + "\n\n" +
                             "   \uD83C\uDF07  ️Asr: " + prayerTimes.asr.getHours() + ":" + asr + "\n\n" +
                             "   \uD83C\uDF05  ️Shom: " + prayerTimes.maghrib.getHours() + ":" + maghrib + "\n\n" +
-                            "   \uD83C\uDF0C  ️Xufton: " + prayerTimes.isha.getHours() + ":" + isha + "\n \n @orginal_namoz_bot";
+                            "   \uD83C\uDF0C  ️Xufton: " + prayerTimes.isha.getHours() + ":" + isha + "\n \n @prayer_uz_bot";
             return time;
 
 //        String time =
@@ -119,14 +119,14 @@ public class PrayTime {
             String time =
                     " \uD83C\uDF10 ️ " + text + "\n" +
                             "\uD83D\uDCC5️  " + (now.getYear() + 1900) + "-yil " + now.getDate() + "-" + getMonth(now.getMonth()) + " \n" +
-                            "\n" +
+                            "➖➖➖➖➖➖➖➖➖➖➖➖\n" +
                             "   \uD83C\uDF03  ️Tong: 0" + prayerTimes.fajr.getHours() + ":" + fajr + "\n\n" +
                             "   \uD83C\uDF04  ️Quyosh: 0" + prayerTimes.sunrise.getHours() + ":" + sunrise + "\n\n" +
                             "   \uD83C\uDFDE  ️Peshin: " + prayerTimes.dhuhr.getHours() + ":" + dhuhr + "\n\n" +
                             "   \uD83C\uDF07  ️Asr: " + prayerTimes.asr.getHours() + ":" + asr + "\n\n" +
                             "   \uD83C\uDF05  ️Shom: " + prayerTimes.maghrib.getHours() + ":" + maghrib + "\n\n" +
                             "   \uD83C\uDF0C  ️Xufton: " + prayerTimes.isha.getHours() + ":" + isha + "\n \n" +
-                            "  @orginal_namoz_bot";
+                            "  @prayer_uz_bot";
         return time;
         }
 
@@ -157,13 +157,13 @@ public class PrayTime {
         String time =//🌤
                 " \uD83C\uDF10  " + text + "\n" +
                         "\uD83D\uDCC5  ️" + (now.getYear() + 1900) + "-йил " + now.getDate() + "-" + getMonthK(now.getMonth()) + " \n" +
-                        "\n"+
+                        "➖➖➖➖➖➖➖➖➖➖➖➖➖\n"+
                         "   \uD83C\uDF03  ️Тонг: 0" + prayerTimes.fajr.getHours() + ":" + fajr + "\n\n" +
                         "   \uD83C\uDF04  ️Қуёш: 0" + prayerTimes.sunrise.getHours() + ":" + sunrise + "\n\n" +
                         "   \uD83C\uDFDE️️  ️Пешин: " + prayerTimes.dhuhr.getHours() + ":" + dhuhr + "\n\n" +
                         "   \uD83C\uDF07  ️Aср: " + prayerTimes.asr.getHours() + ":" + asr + "\n\n" +
                         "   \uD83C\uDF05  ️Шом: " + prayerTimes.maghrib.getHours() + ":" + maghrib + "\n\n" +
-                        "   \uD83C\uDF0C  ️Хуфтон: " + prayerTimes.isha.getHours() + ":" + isha + "\n \n @orginal_namoz_bot";
+                        "   \uD83C\uDF0C  ️Хуфтон: " + prayerTimes.isha.getHours() + ":" + isha + "\n \n @prayer_uz_bot" ;
         return time;
     }
 
