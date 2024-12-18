@@ -75,7 +75,7 @@ public class PrayTime {
                         formatTimeRow("\uD83C\uDF07 Asr", asr, isKiril) +
                         formatTimeRow("\uD83C\uDF05 Shom", maghrib, isKiril) +
                         formatTimeRow("\uD83C\uDF0C Xufton", isha, isKiril) +
-                        "\n\uD83D\uDCAC @prayer_uz_bot"; // Footer with bot reference
+                        "\n\uD83D\uDCAC @HidoyatBot_bot"; // Footer with bot reference
 
         return message;
     }
