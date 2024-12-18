@@ -1,254 +1,94 @@
 package com.example.demo.bot.api;
-//--------------------- Copyright Block ----------------------
-/*
 
-PrayTime.java: Prayer Times Calculator (ver 1.0)
-Copyright (C) 2007-2010 PrayTimes.org
-
-Java Code By: Hussain Ali Khan
-Original JS Code By: Hamid Zarrabi-Zadeh
-
-License: GNU LGPL v3.0
-
-TERMS OF USE:
-	Permission is granted to use this code, with or
-	without modification, in any website or application
-	provided that credit is given to the original work
-	with a link back to PrayTimes.org.
-
-This program is distributed in the hope that it will
-be useful, but WITHOUT ANY WARRANTY.
-
-PLEASE DO NOT REMOVE THIS COPYRIGHT BLOCK.
-
-*/
-
-
-import com.batoulapps.adhan.*;
-import com.batoulapps.adhan.data.DateComponents;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Component
 public class PrayTime {
 
+    private static final String API_URL = "http://api.aladhan.com/v1/timings?latitude=%s&longitude=%s&method=2";
+
     public String main(double latitude, double longitude, String text) {
+        return getPrayerTimes(latitude, longitude, text, false);
+    }
 
-        Coordinates coordinates = new Coordinates((latitude), (longitude));
-        DateComponents date = DateComponents.from(new Date());
-        CalculationParameters params =
-                CalculationMethod.MUSLIM_WORLD_LEAGUE.getParameters();
-        params.madhab = Madhab.HANAFI;
-        params.adjustments.fajr = 2;
-        PrayerTimes prayerTimes = new PrayerTimes(coordinates, date, params);
+    public String mainLT(double latitude, double longitude, String text, String data) {
+        return getPrayerTimes(latitude, longitude, text, false);
+    }
 
-        SunnahTimes sunnahTimes = new SunnahTimes(prayerTimes);
-//        System.out.println(prayerTimes.asr);
+    public String mainK(double latitude, double longitude, String text, String data) {
+        return getPrayerTimes(latitude, longitude, text, true);
+    }
 
-        String asr = String.valueOf(prayerTimes.asr.toString().substring(prayerTimes.asr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
-        String fajr = String.valueOf(prayerTimes.fajr.toString().substring(prayerTimes.fajr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
-        String sunrise = String.valueOf(prayerTimes.sunrise.toString().substring(prayerTimes.sunrise.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
-        String maghrib = String.valueOf(prayerTimes.maghrib.toString().substring(prayerTimes.maghrib.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
-        String isha = String.valueOf(prayerTimes.isha.toString().substring(prayerTimes.isha.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
-        String dhuhr = String.valueOf(prayerTimes.dhuhr.toString().substring(prayerTimes.dhuhr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
+    private String getPrayerTimes(double latitude, double longitude, String text, boolean isKiril) {
+        // API URL manzilini yaratish
+        String url = String.format(API_URL, latitude, longitude);
 
-//        System.out.println(asr);
-        Date now = new Date();
+        // RestTemplate yordamida API dan ma'lumot olish
+        RestTemplate restTemplate = new RestTemplate();
+        String response = restTemplate.getForObject(url, String.class);
 
-        String time =
-                    " \uD83C\uDF10 ️ " + text + "\n" +
-                            "\uD83D\uDCC5️  " + (now.getYear() + 1900) + "-yil " + now.getDate() + "-" + getMonth(now.getMonth()) + " \n" +
-                            "➖➖➖➖➖➖➖➖➖➖➖➖\n" +
-                            "   \uD83C\uDF03  ️Tong: 0" + prayerTimes.fajr.getHours() + ":" + fajr + "\n\n" +
-                            "   \uD83C\uDF04  ️Quyosh: 0" + prayerTimes.sunrise.getHours() + ":" + sunrise + "\n\n" +
-                            "   \uD83C\uDFDE  ️Peshin: " + prayerTimes.dhuhr.getHours() + ":" + dhuhr + "\n\n" +
-                            "   \uD83C\uDF07  ️Asr: " + prayerTimes.asr.getHours() + ":" + asr + "\n\n" +
-                            "   \uD83C\uDF05  ️Shom: " + prayerTimes.maghrib.getHours() + ":" + maghrib + "\n\n" +
-                            "   \uD83C\uDF0C  ️Xufton: " + prayerTimes.isha.getHours() + ":" + isha + "\n \n @prayer_uz_bot";
+        try {
+            // JSON ma'lumotlarini to'g'ri formatlash
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode root = objectMapper.readTree(response);
+            JsonNode dataNode = root.path("data");
+            JsonNode timings = dataNode.path("timings");
+
+            // Namoz vaqtlarini olish
+            String fajr = timings.path("Fajr").asText();
+            String sunrise = timings.path("Sunrise").asText();
+            String dhuhr = timings.path("Dhuhr").asText();
+            String asr = timings.path("Asr").asText();
+            String maghrib = timings.path("Maghrib").asText();
+            String isha = timings.path("Isha").asText();
+
+            // Joriy vaqtni olish
+            String formattedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+            // Namoz vaqtlari va boshqa ma'lumotlarni shakllantirish
+            String timeFormat = isKiril ? "Тонг: %s\n\n" : "Tong: %s\n\n";
+
+            // Namoz vaqtlarini o'zgartirish
+            String time = buildPrayerTimeMessage(text, formattedDate, fajr, sunrise, dhuhr, asr, maghrib, isha, isKiril);
+
             return time;
-
-//        String time =
-//                " \uD83C\uDF10 ️ " + text + "\n" +
-//                        "\uD83D\uDCC5️  " + (now.getYear() + 1900) + "-yil " + now.getDate() + "-" + getMonth(now.getMonth()) + " \n" +
-//                        "\n|----------------------------------------|\n" +
-//                        "   \uD83C\uDF03  ️Tong: 0" + prayerTimes.fajr.getHours() + ":" + fajr + "             \n" +
-//                        "|----------------------------------------|\n" +
-//                        "   \uD83C\uDF04  ️Quyosh: 0" + prayerTimes.sunrise.getHours() + ":" + sunrise + "         \n" +
-//                        "|----------------------------------------|\n" +
-//                        "   \uD83C\uDFDE  ️Peshin: " + prayerTimes.dhuhr.getHours() + ":" + dhuhr + "          \n" +
-//                        "|----------------------------------------|\n" +
-//                        "   \uD83C\uDF07  ️Asr: " + prayerTimes.asr.getHours() + ":" + asr + "                \n" +
-//                        "|----------------------------------------|\n" +
-//                        "   \uD83C\uDF05  ️Shom: " + prayerTimes.maghrib.getHours() + ":" + maghrib + "            \n" +
-//                        "|----------------------------------------|\n" +
-//                        "   \uD83C\uDF0C  ️Xufton: " + prayerTimes.isha.getHours() + ":" + isha + "          \n" +
-//                        "|----------------------------------------| \n " +
-//
-//                        "\n" +
-//                        " |----------------------------------------|" +
-//                        "\n |   @orginal_namoz_bot   |\n" +
-//                        " |----------------------------------------|";
-//        return time;
-
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Namoz vaqtlarini olishda xatolik yuz berdi.";
+        }
     }
 
+    private String buildPrayerTimeMessage(String text, String formattedDate, String fajr, String sunrise, String dhuhr, String asr, String maghrib, String isha, boolean isKiril) {
+        String message =
+                "\uD83C\uDF10 ️ *" + text + "*\n" + // Location header
+                        "\uD83D\uDCC5️  *" + formattedDate + "*\n" + // Date header
+                        "━━━━━━━━━━━━━━━━━━━━━\n" + // Separator line
+                        formatTimeRow("🌅 Tong", fajr, isKiril) +
+                        formatTimeRow("\uD83C\uDF04 Quyosh", sunrise, isKiril) +
+                        formatTimeRow("\uD83C\uDFDE Peshin", dhuhr, isKiril) +
+                        formatTimeRow("\uD83C\uDF07 Asr", asr, isKiril) +
+                        formatTimeRow("\uD83C\uDF05 Shom", maghrib, isKiril) +
+                        formatTimeRow("\uD83C\uDF0C Xufton", isha, isKiril) +
+                        "\n\uD83D\uDCAC @prayer_uz_bot"; // Footer with bot reference
 
-    public String mainLT(double latitude, double longitude, String text , String data) {
-
-        Coordinates coordinates = new Coordinates((latitude), (longitude));
-        DateComponents date = DateComponents.from(new Date());
-        CalculationParameters params =
-                CalculationMethod.MUSLIM_WORLD_LEAGUE.getParameters();
-        params.madhab = Madhab.HANAFI;
-        params.adjustments.fajr = 2;
-        PrayerTimes prayerTimes = new PrayerTimes(coordinates, date, params);
-
-        SunnahTimes sunnahTimes = new SunnahTimes(prayerTimes);
-//        System.out.println(prayerTimes.asr);
-
-        String asr = String.valueOf(prayerTimes.asr.toString().substring(prayerTimes.asr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
-        String fajr = String.valueOf(prayerTimes.fajr.toString().substring(prayerTimes.fajr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
-        String sunrise = String.valueOf(prayerTimes.sunrise.toString().substring(prayerTimes.sunrise.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
-        String maghrib = String.valueOf(prayerTimes.maghrib.toString().substring(prayerTimes.maghrib.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
-        String isha = String.valueOf(prayerTimes.isha.toString().substring(prayerTimes.isha.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
-        String dhuhr = String.valueOf(prayerTimes.dhuhr.toString().substring(prayerTimes.dhuhr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
-
-//        System.out.println(asr);
-        Date now = new Date();
-            String time =
-                    " \uD83C\uDF10 ️ " + text + "\n" +
-                            "\uD83D\uDCC5️  " + (now.getYear() + 1900) + "-yil " + now.getDate() + "-" + getMonth(now.getMonth()) + " \n" +
-                            "➖➖➖➖➖➖➖➖➖➖➖➖\n" +
-                            "   \uD83C\uDF03  ️Tong: 0" + prayerTimes.fajr.getHours() + ":" + fajr + "\n\n" +
-                            "   \uD83C\uDF04  ️Quyosh: 0" + prayerTimes.sunrise.getHours() + ":" + sunrise + "\n\n" +
-                            "   \uD83C\uDFDE  ️Peshin: " + prayerTimes.dhuhr.getHours() + ":" + dhuhr + "\n\n" +
-                            "   \uD83C\uDF07  ️Asr: " + prayerTimes.asr.getHours() + ":" + asr + "\n\n" +
-                            "   \uD83C\uDF05  ️Shom: " + prayerTimes.maghrib.getHours() + ":" + maghrib + "\n\n" +
-                            "   \uD83C\uDF0C  ️Xufton: " + prayerTimes.isha.getHours() + ":" + isha + "\n \n" +
-                            "  @prayer_uz_bot";
-        return time;
-        }
-
-
-
-    public String mainK(double latitude, double longitude, String text , String data) {
-
-        Coordinates coordinates = new Coordinates(latitude, longitude);
-        DateComponents date = DateComponents.from(new Date());
-        CalculationParameters params =
-                CalculationMethod.MUSLIM_WORLD_LEAGUE.getParameters();
-        params.madhab = Madhab.HANAFI;
-        params.adjustments.fajr = 2;
-        PrayerTimes prayerTimes = new PrayerTimes(coordinates, date, params);
-
-        SunnahTimes sunnahTimes = new SunnahTimes(prayerTimes);
-//        System.out.println(prayerTimes.asr);
-
-        String asr = String.valueOf(prayerTimes.asr.toString().substring(prayerTimes.asr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
-        String fajr = String.valueOf(prayerTimes.fajr.toString().substring(prayerTimes.fajr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
-        String sunrise = String.valueOf(prayerTimes.sunrise.toString().substring(prayerTimes.sunrise.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
-        String maghrib = String.valueOf(prayerTimes.maghrib.toString().substring(prayerTimes.maghrib.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
-        String isha = String.valueOf(prayerTimes.isha.toString().substring(prayerTimes.isha.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
-        String dhuhr = String.valueOf(prayerTimes.dhuhr.toString().substring(prayerTimes.dhuhr.toString().indexOf(":") + 1, prayerTimes.asr.toString().lastIndexOf(":")));
-
-//        System.out.println(asr);
-        Date now = new Date();
-        String time =//🌤
-                " \uD83C\uDF10  " + text + "\n" +
-                        "\uD83D\uDCC5  ️" + (now.getYear() + 1900) + "-йил " + now.getDate() + "-" + getMonthK(now.getMonth()) + " \n" +
-                        "➖➖➖➖➖➖➖➖➖➖➖➖➖\n"+
-                        "   \uD83C\uDF03  ️Тонг: 0" + prayerTimes.fajr.getHours() + ":" + fajr + "\n\n" +
-                        "   \uD83C\uDF04  ️Қуёш: 0" + prayerTimes.sunrise.getHours() + ":" + sunrise + "\n\n" +
-                        "   \uD83C\uDFDE️️  ️Пешин: " + prayerTimes.dhuhr.getHours() + ":" + dhuhr + "\n\n" +
-                        "   \uD83C\uDF07  ️Aср: " + prayerTimes.asr.getHours() + ":" + asr + "\n\n" +
-                        "   \uD83C\uDF05  ️Шом: " + prayerTimes.maghrib.getHours() + ":" + maghrib + "\n\n" +
-                        "   \uD83C\uDF0C  ️Хуфтон: " + prayerTimes.isha.getHours() + ":" + isha + "\n \n @prayer_uz_bot" ;
-        return time;
+        return message;
     }
 
-
-    public String getMonth(int n) {
-        switch (n) {
-            case 0: {
-                return "Yanvar";
-            }
-            case 1: {
-                return "Ferval";
-            }
-            case 2: {
-                return "Mart";
-            }
-            case 3: {
-                return "Aprel";
-            }
-            case 4: {
-                return "May";
-            }
-            case 5: {
-                return "Iyun";
-            }
-            case 6: {
-                return "Iyul";
-            }
-            case 7: {
-                return "Avgust";
-            }
-            case 8: {
-                return "Sentabr";
-            }
-            case 9: {
-                return "Oktabr";
-            }
-            case 10: {
-                return "Noyabr";
-            }
-            case 11: {
-                return "Dekabr";
-            }
+    private String formatTimeRow(String label, String time, boolean isKiril) {
+        if (isKiril) {
+            label = label.replace("Tong", "Тонг")
+                    .replace("Quyosh", "Қуёш")
+                    .replace("Peshin", "Пешин")
+                    .replace("Asr", "Аср")
+                    .replace("Shom", "Шом")
+                    .replace("Xufton", "Хуфтон");
         }
-        return null;
-    }
-
-    public String getMonthK(int n) {
-        switch (n) {
-            case 0: {
-                return "Йанвар";
-            }
-            case 1: {
-                return "Феврал";
-            }
-            case 2: {
-                return "Март";
-            }
-            case 3: {
-                return "Апрел";
-            }
-            case 4: {
-                return "Май";
-            }
-            case 5: {
-                return "Ийун";
-            }
-            case 6: {
-                return "Ийул";
-            }
-            case 7: {
-                return "Август";
-            }
-            case 8: {
-                return "Сентабр";
-            }
-            case 9: {
-                return "Октабр";
-            }
-            case 10: {
-                return "Ноябр";
-            }
-            case 11: {
-                return "Декабр";
-            }
-        }
-        return null;
+        return String.format("%s: *%s*\n", label, time); // Bold formatting for times
     }
 }
