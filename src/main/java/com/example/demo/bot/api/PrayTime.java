@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 @Component
@@ -48,14 +49,16 @@ public class PrayTime {
             String maghrib = timings.path("Maghrib").asText();
             String isha = timings.path("Isha").asText();
 
+            // Asr vaqtiga 37 daqiqa qo'shish
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime asrTime = LocalTime.parse(asr, timeFormatter).plusMinutes(37);
+            String updatedAsr = asrTime.format(timeFormatter); // Yangi Asr vaqti
+
             // Joriy vaqtni olish
             String formattedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-            // Namoz vaqtlari va boshqa ma'lumotlarni shakllantirish
-            String timeFormat = isKiril ? "Тонг: %s\n\n" : "Tong: %s\n\n";
-
             // Namoz vaqtlarini o'zgartirish
-            String time = buildPrayerTimeMessage(text, formattedDate, fajr, sunrise, dhuhr, asr, maghrib, isha, isKiril);
+            String time = buildPrayerTimeMessage(text, formattedDate, fajr, sunrise, dhuhr, updatedAsr, maghrib, isha, isKiril);
 
             return time;
         } catch (Exception e) {
@@ -63,7 +66,6 @@ public class PrayTime {
             return "Namoz vaqtlarini olishda xatolik yuz berdi.";
         }
     }
-
     private String buildPrayerTimeMessage(String text, String formattedDate, String fajr, String sunrise, String dhuhr, String asr, String maghrib, String isha, boolean isKiril) {
         String message =
                 "\uD83C\uDF10 ️ *" + text + "*\n" + // Location header
